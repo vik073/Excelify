@@ -1,0 +1,27 @@
+
+  <!-- Change data-value in svg element to impact progress -->
+  <svg viewBox="0 0 100 100"
+  [ngClass]="{'size-185': ( size === 'chart'), 'small': ( size === 'small')}"
+   xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" data-value="progress">
+    <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF2779" />
+      <stop offset="100%" stop-color="#FF635C" />
+    </linearGradient>
+  </defs>
+  <defs>
+    <linearGradient id="grey-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F5F5F7" />
+      <stop offset="100%" stop-color="#F5F5F7" />
+    </linearGradient>
+  </defs>
+  <circle *ngIf="size === 'small'" r="45" cx="50" cy="50" stroke="url(#grey-gradient)" stroke-width="6" />
+    <circle *ngIf="size === 'chart'" r="45" cx="50" cy="50" stroke="url(#gradient)" stroke-width="6" />
+    <!-- 282.78302001953125 is auto-calculated by path.getTotalLength() -->
+    <path class="meter" d="M5,50a45,45 0 1,0 90,0a45,45 0 1,0 -90,0"  stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="282.78302001953125" stroke-dasharray="282.78302001953125" />
+    <!-- Value automatically updates based on data-value set above -->
+    <text *ngIf="size === 'small'" x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="20">{{progress}}%</text>
+    <text *ngIf="size === 'chart'" x="50" y="40" text-anchor="middle" dominant-baseline="central" font-size="25">{{count}}</text>
+    <text *ngIf="size === 'chart'" x="50" y="60" text-anchor="middle" dominant-baseline="central" font-size="10"> Total Sessions</text>
+
+  </svg>

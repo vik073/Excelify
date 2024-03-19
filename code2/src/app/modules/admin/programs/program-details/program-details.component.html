@@ -1,0 +1,202 @@
+<div class="flex flex-col flex-auto min-w-0 font-roboto ">
+
+    <div class="flex-auto px-10 sm:p-10">
+        <app-header [pageTitle]="pageTitle" [pageDescription]="pageDescription"></app-header>
+        <div id="program-container" class="container">
+
+            <app-breadcrum></app-breadcrum>
+
+            <div class=" flex flex-auto border-t -mt-px pt-4 sm:pt-6">
+                <div class="w-full max-w-screen-xl mx-auto">
+                    <div class="grid grid-cols-3 mx-auto gap-2 min-w-0">
+                        <div
+                            class=" h-full col-span-3 sm:col-span-3  md:col-span-3 mr-6 lg:col-span-2 flex flex-col flex-auto  bg-card shadow rounded-2xl overflow-hidden">
+                            <div class="text-3xl w-full flex flex-row justify-between mb-4 h-10 text-secondary leading-6 ml-8 mt-7  truncate">
+                                <div class="roboto-bold">{{programDetails.title}} </div>
+                                <div class="justify-end mr-12 flex items-center  w-full  font-grey roboto-medium text-sm"> 
+                                    <img class="mr-2 h-3 w-3 ml-2" src="assets/icons/programs.png" />
+                                    All programs</div>
+                            </div>
+
+                            <!-- info bar -->
+                            <div class="flex flex-row  w-full h-24  bg-grey pl-8">
+                                <div class=" flex items-center w-full h-full border-r-2 text-left  border-grey-900">
+                                    <div class="flex flex-col  ">
+                                        <div
+                                            class="roboto-medium  text-lg font-grey  sm:font-size:7px md:font-size:8px lg:font-size: 9px ">
+                                            Program Manager</div>
+                                        <div class="roboto-regular text-primary  text-lg ">{{programDetails.managerName}}</div>
+                                    </div>
+                                </div>
+                                <div class="w-full h-full border-r-2  flex items-center text-left border-grey-900">
+                                    <div class="flex flex-col text-left pl-6 ">
+                                        <div
+                                            class="roboto-medium  font-grey  text-lg font-grey sm:font-size:7px md:font-size:8px lg:font-size: 9px ">
+                                            Start Date</div>
+                                        <div class="roboto-regular text-lg text-primary ">{{programDetails.startDate}}</div>
+                                    </div>
+                                </div>
+                                <div class="w-full h-full border-r-2 flex items-center text-left border-grey-900">
+                                    <div class="flex flex-col  text-left pl-6  ">
+                                        <div
+                                            class="roboto-medium text-lg font-grey sm:font-size:7px md:font-size:8px lg:font-size: 9px ">
+                                            End Date</div>
+                                        <div class="roboto-regula text-lgr text-primary   ">{{programDetails.endDate}}</div>
+                                    </div>
+                                </div>
+                                <div class="w-full h-full flex items-center text-left">
+                                    <div class="flex flex-col items-center text-left pl-6 ">
+                                        <div
+                                            class=" roboto-medium text-lg font-grey  sm:font-size:7px md:font-size:8px lg:font-size: 9px ">
+                                            Days left</div>
+                                        <div class=" roboto-regular text-lg text-primary w-full ">{{remainingDays}}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" flex px-4 mt-4 h-16 border-b ">
+                                <div [ngClass]="{'border-blue': selectedBar=='about'}" (click)="selectedBar='about'"
+                                    class="flex items-end flex-auto  roboto-medium  text-base font-grey w-full text-center h-full">
+                                    <div class="w-full text-center mb-3">About</div>
+                                </div>
+                                <div (click)="selectedBar='engagements'"
+                                    [ngClass]="{'border-blue': selectedBar=='engagements'}"
+                                    class="flex items-end flex-auto roboto-medium  text-base font-grey w-full text-center h-full">
+                                    <div class="w-full text-center mb-3">Engagement</div>
+                                </div>
+                                <div (click)="selectedBar='sessions'"
+                                    [ngClass]="{'border-blue': selectedBar=='sessions'}"
+                                    class="flex items-end flex-auto roboto-medium  text-base font-grey w-full text-center h-full ">
+                                    <div class="w-full text-center mb-3">Sessions</div>
+                                </div>
+                                <div (click)="selectedBar='coaches'" [ngClass]="{'border-blue': selectedBar=='coaches'}"
+                                    class="flex items-end flex-auto roboto-medium  text-base font-grey w-full text-center h-full ">
+                                    <div class="w-full text-center mb-3">Coaches</div>
+                                </div>
+                                <div (click)="selectedBar='coachees'"
+                                    [ngClass]="{'border-blue': selectedBar=='coachees'}"
+                                    class="flex items-end flex-auto roboto-medium  text-base font-grey w-full text-center h-full ">
+                                    <div class="w-full text-center mb-3">Coachees</div>
+                                </div>
+                                <div (click)="selectedBar='insights'"
+                                    [ngClass]="{'border-blue': selectedBar=='insights'}"
+                                    class="flex items-end flex-auto roboto-medium  text-base font-grey w-full text-center h-full ">
+                                    <div class="w-full text-center mb-3">Insights</div>
+                                </div>
+                                <div (click)="selectedBar='tools'" [ngClass]="{'border-blue': selectedBar=='tools'}"
+                                    class="flex items-end flex-auto roboto-medium  text-base font-grey w-full text-center h-full ">
+                                    <div class="w-full text-center mb-3">Tools</div>
+                                </div>
+                                <div (click)="selectedBar='review'" [ngClass]="{'border-blue': selectedBar=='review'}"
+                                    class="flex items-end flex-auto roboto-medium  text-base font-grey w-full text-center h-full ">
+                                    <div class="w-full text-center mb-3">Review</div>
+                                </div>
+                            </div>
+                            <div class="h-full table-min-height ">
+                                <app-about-program *ngIf="selectedBar=='about'"
+                                    [programDetails]="programDetails"></app-about-program>
+                                <app-engagements (addEngagementClick)="changeCreateEngagement($event)"
+                                    [programDetails]="programDetails"
+                                    *ngIf="selectedBar=='engagements'"></app-engagements>
+                                <app-sessions *ngIf="selectedBar=='sessions'" (changeSessionRow)="changeSessionDetail($event)"></app-sessions>
+                                <app-coaches-table *ngIf="selectedBar=='coaches'"
+                                    (changeCoachRow)="changeCoachDetail($event)"></app-coaches-table>
+                                <app-coachees-table *ngIf="selectedBar=='coachees'"
+                                    [programDetails]="programDetails"></app-coachees-table>
+                                <app-insight *ngIf="selectedBar=='insights'"></app-insight>
+                                <app-review *ngIf="selectedBar == 'review'"></app-review>
+                                <app-tools *ngIf="selectedBar == 'tools'"></app-tools>
+                            </div>
+                        </div>
+                        <!-- coaches -->
+
+                        <div *ngIf="programDetails.groupEngagements" class=" w-min-16 hidden sm:hidden ml-2  md:hidden lg:grid  lg:col-span-1 flex flex-col content-center items-start h-fit gap-y-6">
+                            <div class="lg:col-span-2 flex flex-col  h-fit w-full flex-auto  bg-card shadow rounded-2xl ">
+                                <div *ngIf="selectedBar=='about'" class="flex flex-col items-start justify-between">
+                                    <app-program-side-header-bar class="w-full" [oneOnOneSessions]="oneOnOneCount"  [groupSessions]="groupSessionCount"
+                                     [headerText] = "'Overview'"></app-program-side-header-bar>
+
+                                    <div class="flex w-full h-16 border-t-2 px-8 py-5">
+                                        <app-rating-details [rating]="4" class="w-full"></app-rating-details>
+                                    </div>
+                                    <div class="flex flex-col h-40 overflow-hidden w-full border-t-2 px-8 py-6">
+                                        <div class="flex justify-between w-full">
+                                            <h3 class="font-bold text-lg font-700">Coachees</h3>
+                                            <div class="icon text-gray-200 text-base flex-row flex items-center">
+                                                Add <img class="mr-0 h-3 w-3 ml-2" src="assets/icons/Activity.png" />
+                                            </div>
+                                        </div>
+                                        <div class="w-full h-16 flex items-start  py-5 ">
+                                            <div *ngIf="programDetails.coachList?.length>0 "
+                                                class=" coacheeLink flex flex-0 items-center -space-x-1.5">
+                                                <ng-container class="margin-left-10 border-white"
+                                                    *ngFor="let coach of programDetails.coachList; let i = index">
+                                                    <img *ngIf="getAvatarUrl(coach.coachId,'coach')?.length>1 && i <4"
+                                                        class="flex-0 w-12 h-12 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                                                        [src]="getAvatarUrl(coach.coachId,'coach')">
+                                                    <div *ngIf="getAvatarUrl(coach.coachId,'coach')?.length===1 && i <4"
+                                                        class="flex items-center border-white justify-center w-12 h-12 rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                        {{getAvatarUrl(coach.coachId,'coach')}}
+                                                    </div>
+                                                </ng-container>
+                                                <div *ngIf="programDetails.coachList?.length > 4"
+                                                    class="flex-0 flex justify-center border-white items-center text-white-200 w-12 h-12 rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800 object-cover uppercase bg-primary text-white">
+                                                    + {{ (programDetails.coachList?.length - 4)}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col h-40 w-full border-t-2 px-8 py-6">
+                                        <div class="flex justify-between w-full">
+                                            <h3 class="font-bold text-lg font-700">Coachees</h3>
+                                            <div class="icon text-gray-200 text-base flex-row flex items-center">
+                                                Add <img class="mr-0 h-3 w-3 ml-2" src="assets/icons/Activity.png" />
+                                            </div>
+                                        </div>
+                                        <div class="w-full h-16 flex items-start  py-5 ">
+                                            <div *ngIf="programDetails.coacheeList?.length>0 "
+                                                class=" coacheeLink flex flex-0 items-center -space-x-1.5">
+                                                <ng-container class="margin-left-10 border-white"
+                                                    *ngFor="let coach of programDetails.coacheeList; let i = index">
+                                                    <img *ngIf="getAvatarUrl(coach.coacheeId,'coache')?.length>1 && i <4"
+                                                        class="flex-0 w-12 h-12 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                                                        [src]="getAvatarUrl(coach.coacheeId,'coache')">
+                                                    <div *ngIf="getAvatarUrl(coach.coacheeId,'coache')?.length===1 && i <4"
+                                                        class="flex items-center border-white justify-center w-12 h-12 rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                        {{getAvatarUrl(coach.coacheeId,'coache')}}
+                                                    </div>
+                                                </ng-container>
+                                                <div *ngIf="programDetails.coacheeList?.length > 4"
+                                                    class="flex-0 flex justify-center border-white items-center text-white-200 w-12 h-12 rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800 object-cover uppercase bg-primary text-white">
+                                                    + {{ (programDetails.coacheeList?.length - 4)}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <app-coach-side-bar *ngIf="selectedBar == 'coaches'" [programDetails]="programDetails"
+                                    [coachData]="coachDetail"></app-coach-side-bar>
+                                <app-coachee-side-bar *ngIf="selectedBar == 'coachees'"
+                                    [programDetails]="programDetails"></app-coachee-side-bar>
+                                <app-engagement-side-bar [createEngagement]="createEngagement"
+                                    [programDetails]="programDetails" *ngIf="selectedBar == 'engagements'"
+                                    (addEngagementClick)="changeCreateEngagement($event)"></app-engagement-side-bar>
+                                <app-create-session *ngIf="selectedBar == 'sessions'"
+                                    [programDetails]="programDetails" [session]="true"
+                                [upcomingSessionData]="sessionDetail"></app-create-session>
+                                <app-create-session *ngIf="selectedBar == 'insights'" [session]="false" [programDetails]="programDetails"
+                                [upcomingSessionData]="sessionDetail"></app-create-session>
+                                <app-rating-side-bar *ngIf="selectedBar == 'review'"
+                                [programDetails]="programDetails"
+                                ></app-rating-side-bar>
+                                <app-create-session *ngIf="selectedBar == 'tools'" [session]="false" [programDetails]="programDetails"
+                                [upcomingSessionData]="sessionDetail"></app-create-session>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

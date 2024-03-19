@@ -1,0 +1,41 @@
+.dots {
+    height: 2.63px;
+    width: 10px;
+}
+
+.text-10 {
+    font-size: 10px;
+}
+
+:host {
+
+    ::ng-deep .mat-form-field.mat-form-field-appearance-fill .mat-form-field-wrapper .mat-form-field-flex {
+    
+        min-height: 24px !important;
+        width: 131px;
+        font-size: 12px !important;
+        padding:  0 8px !important;
+    }
+    
+    ::ng-deep .mat-form-field.mat-form-field-appearance-fill .mat-form-field-wrapper {
+    
+        margin-bottom: 4px !important;
+    }
+    
+    
+    
+    }
+    
+    ::ng-deep .engagement-filter {
+        font-size: 12px;
+        opacity: 1;
+        left: 8px !important;
+        min-width: calc(100% + 19px) !important;
+        transform: scaleY(1);
+        background: #FFFFFF;
+       box-shadow: 0px 50px 100px rgb(0 0 0 / 10%) !important;
+       border-radius: 0px 0px 20px 20px !important;
+       position: absolute;
+       top: 30px !important;
+       overflow: auto;
+    }

@@ -1,0 +1,9 @@
+<div class="breadcrumb mt-3 flex flex-row justify-start content-center items-center">
+    <div class="flex flex-row justify-start content-center items-center"
+        *ngFor="let path of pathArr; let i = index; last as isLast">
+        <span class="path roboto-regular text-base mx-1" 
+        [ngClass]="{'text-primary': (isLast), 'font-grey': (!isLast)}">{{path}}</span>
+
+        <span *ngIf="!isLast && !(i === 0)"> / </span>
+    </div>
+</div>

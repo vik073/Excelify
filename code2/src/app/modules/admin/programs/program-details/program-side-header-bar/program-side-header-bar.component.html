@@ -1,0 +1,63 @@
+<div class="flex flex-col h-84 h-full w-full  pt-6 justify-between ">
+
+    <!-- Title for form -->
+    <div class="flex justify-between w-full items-center px-8 ">
+        <h3 class="font-bold text-primary text-xl font-roboto-700">{{headerText}}</h3>
+        <div class="icon">
+            <img class="mr-0" src="assets/icons/threedot.png" />
+        </div>
+    </div>
+    <div *ngIf="coacheData" class=" w-full roboto-regular border-b-2 px-8 pb-6 text-base mt-6 grey text-center flex-row flex">
+        <img *ngIf="coacheData?.profilePic?.length>1 "
+            class="flex-0 w-12 h-12 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+            [src]="this.profilePicPath + coacheData?.profilePic">
+        <div *ngIf="coacheData?.profilePic === ''"
+            class="flex items-center border-white justify-center w-12 h-12 rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+            {{T}}
+        </div>
+        <div class="flex flex-col ml-4">
+            <div class="flex flex-row items-start text-base roboto-medium text-blue-900">
+                <span class="mr-2 "> {{coacheData?.firstName}} </span> {{coacheData?.lastName}}
+            </div>
+            <div class=" flex flex-row mt-1">
+                <span class="roboto-regular text-sm border-r-2 pr-2 text-blue-900"> {{coacheData?.mobileNumber}}</span>
+                <span class="roboto-regular ml-2 text-sm text-blue-900"> {{coacheData?.emailId}}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="coacheData" class="w-full h-10 flex  mt-4  justify-center">
+        <div class="session flex items-center flex-row mr-4">
+            <div
+                class="flex items-center justify-center font-roboto-700 w-8 h-8 rounded-full text-lg text-white uppercase bg-primary ">
+                {{engagementCount}} </div>
+            <div class=" flex items-center text-sm roboto-regular ml-2"> Engagements
+            </div>
+        </div>
+    </div>
+
+    <!-- chart window -->
+    <div class="h-56  w-full flex items-center  justify-center">
+        <app-side-bar-chart [progress]="progress" [count]="total" [size] = "'chart'" [text]="'hello'"></app-side-bar-chart>
+    </div>
+
+    <!-- info data section -->
+    <div class="w-full h-10 flex  mb-7  justify-center">
+        <div class="session flex items-center flex-row mr-4">
+            <div
+                class="flex items-center justify-center font-roboto-700 w-8 h-8 rounded-full text-lg text-white uppercase bg-primary ">
+                {{oneOnOneSessions}} </div>
+            <div class=" flex items-center text-sm roboto-regular ml-2"> 1:1 Sessions
+            </div>
+        </div>
+        <div class="session  items-center flex flex-row">
+            <div
+                class="flex items-center justify-center font-roboto-700 w-8 h-8 rounded-full text-lg uppercase text-white uppercase bg-secondary">
+                {{groupSessions}} </div>
+            <div class=" flex items-center text-sm roboto-regular ml-2"> Group Sessions
+            </div>
+        </div>
+    </div>
+
+</div>

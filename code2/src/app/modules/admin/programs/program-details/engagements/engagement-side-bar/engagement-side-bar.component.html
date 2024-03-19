@@ -1,0 +1,69 @@
+<div class="lg:col-span-2 flex flex-col h-fit w-full flex-auto   bg-card shadow rounded-2xl ">
+    <app-create-engagement *ngIf="createEngagement"></app-create-engagement>
+    <div *ngIf="!createEngagement" class="flex flex-col items-start justify-between">
+
+
+        <app-program-side-header-bar  class="w-full" [oneOnOneSessions]="oneOnOneCount"  [groupSessions]="groupSessionCount" [headerText] = "'Engagements'"></app-program-side-header-bar>
+
+        <!-- Rating section -->
+        <div class="flex w-full h-16 border-t-2 px-8 py-5">
+            <app-rating-details  [rating]="3" class="w-full"></app-rating-details>
+        </div>
+
+
+        <div class="flex flex-col h-40 w-full border-t-2 px-8 py-6">
+            <div class="flex justify-between w-full">
+                <h3 class="font-bold text-lg font-700">Coachees</h3>
+                <div class="icon text-gray-200 text-base flex-row flex items-center">
+                    Add <img class="mr-0 h-3 w-3 ml-2" src="assets/icons/Activity.png" />
+                </div>
+            </div>
+            <div class="w-full h-16 flex items-start  py-5 ">
+                <div *ngIf="programDetails.coachList.length>0 "
+                    class=" coacheeLink flex flex-0 items-center -space-x-1.5">
+                    <ng-container class="margin-left-10 border-white"
+                        *ngFor="let coach of programDetails.coachList; let i = index">
+                        <img *ngIf="getAvatarUrl(coach.coachId,'coach')?.length>1 && i <4"
+                            class="flex-0 w-12 h-12 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                            [src]="getAvatarUrl(coach.coachId,'coach')">
+                        <div *ngIf="getAvatarUrl(coach.coachId,'coach')?.length===1 && i <4"
+                            class="flex items-center border-white justify-center w-12 h-12 rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                            {{getAvatarUrl(coach.coachId,'coach')}}
+                        </div>
+                    </ng-container>
+                    <div *ngIf="programDetails.coachList?.length > 4"
+                        class="flex-0 flex justify-center border-white items-center text-white-200 w-12 h-12 rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800 object-cover uppercase bg-primary text-white-600 ">
+                        + {{ (programDetails.coachList?.length - 4)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col h-40 w-full border-t-2 px-8 py-6">
+            <div class="flex justify-between w-full">
+                <h3 class="font-bold text-lg font-700">Coachees</h3>
+                <div class="icon text-gray-200 text-base flex-row flex items-center">
+                    Add <img class="mr-0 h-3 w-3 ml-2" src="assets/icons/Activity.png" />
+                </div>
+            </div>
+            <div class="w-full h-16 flex items-start  py-5 ">
+                <div *ngIf="programDetails.coacheeList?.length>0 "
+                    class=" coacheeLink flex flex-0 items-center -space-x-1.5">
+                    <ng-container class="margin-left-10 border-white"
+                        *ngFor="let coach of programDetails.coacheeList; let i = index">
+                        <img *ngIf="getAvatarUrl(coach.coacheeId,'coache')?.length>1 && i <4"
+                            class="flex-0 w-12 h-12 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                            [src]="getAvatarUrl(coach.coacheeId,'coache')">
+                        <div *ngIf="getAvatarUrl(coach.coacheeId,'coache')?.length===1 && i <4"
+                            class="flex items-center border-white justify-center w-12 h-12 rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                            {{getAvatarUrl(coach.coacheeId,'coache')}}
+                        </div>
+                    </ng-container>
+                    <div *ngIf="programDetails.coacheeList?.length > 4"
+                        class="flex-0 flex justify-center border-white items-center text-white-200 w-12 h-12 rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800 object-cover uppercase bg-primary text-white">
+                        + {{ (programDetails.coacheeList?.length - 4)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

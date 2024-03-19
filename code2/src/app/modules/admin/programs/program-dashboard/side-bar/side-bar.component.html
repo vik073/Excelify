@@ -1,0 +1,13 @@
+<app-coaches-list class="w-full  p-8" *ngIf="selectedChild == 'addCoach'" (addSelection)='addSelection($event)'
+    [filterListData]='filterCoachListData' [viewMore]="'side-bar'" (searchFilter)="filterData($event)" [type]="'coaches'">
+</app-coaches-list>
+
+<app-coaches-list class="w-full  p-8" *ngIf="selectedChild == 'addCoachee'" (addSelection)='addSelection($event)'
+    [filterListData]='filterCoacheeListData' [viewMore]="'side-bar'" (searchFilter)="filterData($event)"
+    [type]="'coachees'">
+</app-coaches-list>
+
+<div *ngIf="selectedChild == 'addEngagement'" class="flex flex-col justify-center items-center w-full  h-full  ">
+    <app-create-engagement [createEngagement]="create" class="w-full h-full"
+    ></app-create-engagement>
+</div>

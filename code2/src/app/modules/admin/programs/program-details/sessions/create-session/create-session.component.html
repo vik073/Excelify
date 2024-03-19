@@ -1,0 +1,183 @@
+<div class="lg:col-span-2 flex flex-col  h-fit w-full flex-auto  bg-card shadow rounded-2xl" *ngIf="isUpcomingSession">
+    <div class="flex flex-col items-start justify-between">
+        <div class="flex flex-col  w-full ">
+            <div *ngIf="session" class="flex justify-between px-8 py-6 items-center w-full">
+                <div class="roboto-bold text-xl ">Sessions</div>
+                <div class="icon">
+                    <img class="mr-0" src="assets/icons/threedot.png" />
+                </div>
+            </div>
+            <div *ngIf="session" class="h-fit w-full flex  mb-6 justify-center">
+                <div class="w-full flex justify-center h-fit bg-gray-100">
+                    <mat-calendar [selected]="selectedDate" (selectedChange)="onSelect($event)"></mat-calendar>
+                </div>
+            </div>
+
+            <app-program-side-header-bar *ngIf="!session" class="w-full" [oneOnOneSessions]="oneOnOneCount"
+                [groupSessions]="groupSessionCount" [headerText]="'Engagements'"></app-program-side-header-bar>
+
+            <!-- Rating section -->
+            <div *ngIf="!session" class="flex w-full h-16 border-t-2 border-b-2 px-8 py-5">
+                <app-rating-details [rating]="3" class="w-full"></app-rating-details>
+            </div>
+            <div *ngIf="!isLoading" class="w-full h-fit flex flex-col px-6">
+                <div class="session flex  flex-col mr-4">
+                    <h3 class="roboto-bold text-xl mt-4 ">Upcoming Sessions</h3>
+                </div>
+                <div class=" items-start py-2 flex flex-row border-b mt-4" *ngFor="let session of upcomingSession">
+                    <div class="ico"><img class="mr-0" src="assets/icons/session.png" /></div>
+                    <div class="details pl-4">
+                        <div class="text-xs text-gray-400">{{session?.startDate}}</div>
+                        <div class="text-base roboto-medium leading-4 pb-1 text-primary">
+                            {{session?.sessionName}}</div>
+                        <div class="text-sm text-gray-400 roboto-regular">
+                            {{session?.sessionShortDescription}}
+                        </div>
+
+                        <div class=" flex flex-row w-full py-4 items-center text-sm font roboto-regular">
+                            <div class=" flex flex-row items-center text-sm font roboto-regular">
+                                <div class=" flex-0 flex justify-center border-white items-center text-white w-6 h-6
+                                    rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800
+                                    object-cover uppercase bg-blue-900 ">
+                                    <img class="flex-0 w-6 h-6 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                                        [src]="profilePicPath+session?.coachProfilePic">
+                                </div>
+                                <div class="flex flex-col text-sm">
+                                    <span class="px-2 roboto-regular text-gray-400">Coach</span>
+                                    <span class="px-2 roboto-regular">{{session?.coachName}}</span>
+                                </div>
+                            </div>
+                            <div class=" flex flex-row items-center text-sm ml-2 font roboto-regular">
+                                <div class=" flex-0 flex justify-center border-white items-center text-white w-6 h-6
+                                    rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800
+                                    object-cover uppercase bg-blue-900  ">
+                                    <img class="flex-0 w-6 h-6 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                                        [src]="profilePicPath+session?.coacheeInfo[0].coacheeProfilePic">
+                                </div>
+                                <div class="flex flex-col text-sm">
+                                    <span class="px-2 roboto-regular text-gray-400 ">Coachee</span>
+                                    <span class="px-1 roboto-regular">{{session?.coacheeInfo[0].coacheeName}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lg:col-span-2 flex flex-col  h-fit w-full flex-auto  bg-card shadow rounded-2xl" *ngIf="!isUpcomingSession">
+    <div class="flex flex-col items-start justify-between">
+        <div class="flex flex-col  w-full ">
+            <div class="flex justify-between px-8 py-6 items-center w-full">
+                <div class="text-xl roboto-medium">Overview</div>
+                <div class="icon">
+                    <img class="mr-0" src="assets/icons/threedot.png" />
+                </div>
+            </div>
+            <div class="h-fit border-t-2 w-full flex  mb-6 justify-center">
+                <div class="w-full h-68">
+                    <div class=" px-8 w-full roboto-regular text-base grey text-center flex-row flex">
+                        <div class="flex flex-col ml-4">
+                            <div class="flex flex-col justify-around mt-4 mb-4 items-start">
+                                <div class="text-sm text-grey">Session Name</div>
+                                <div class="flex flex-row   text-base roboto-medium text-primary">
+                                    <span class="mr-2 text-lg items-start "> {{sessionData?.sessionName}} </span>
+                                </div>
+                                <div class="items-start text-sm">Completed difficulty with different challanges</div>
+                            </div>
+                            <div class="flex flex-row" *ngIf="sessionData?.sessionType == 'Group'">
+                                <div class="ico"><img class="mr-0" src="assets/icons/session.png" /></div>
+                                <div class="flex flex-col ml-3 items-start">
+                                    <div class="text-lg roboto-bold text-primary">Group Discussion</div>
+                                    <div class="roboto-medium  text-xs text-primary">
+                                        {{sessionData?.sessionDate}}</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-row mt-4" *ngIf="!(sessionData?.sessionType == 'Group')">
+                                <div class="ico"><img class="mr-0" src="assets/icons/session.png" /></div>
+                                <div class="flex flex-col ml-3 items-start">
+                                    <div class="text-lg roboto-bold text-primary">One on One Discussion</div>
+                                    <div class="roboto-medium  text-xs text-primary">
+                                        {{sessionData?.sessionDate}}</div>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-around mt-4 mb-3 items-start">
+                                <div class="text-sm text-grey">Engagement Name</div>
+                                <div class="flex flex-row   text-base roboto-medium text-primary">
+                                    <span class="mr-2 text-lg items-start "> {{sessionData?.engagementName}} </span>
+                                </div>
+                                <div class="items-start text-sm">Completed difficulty with different challanges</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!isLoading" class="w-full h-fit flex flex-col ">
+                <div class="flex w-full h-16 border-t-2 px-8 py-5">
+                    <app-rating-details [rating]="sessionData?.sessionRating" class="w-full"></app-rating-details>
+                </div>
+
+                <div class="flex flex-col h-40 w-full border-t-2 px-8 py-6">
+                    <div class="flex justify-between w-full">
+                        <h3 class="font-bold text-lg font-700">Coach</h3>
+                        <div class="icon text-gray-200 text-base flex-row flex items-center">
+                            Add <img class="mr-0 h-3 w-3 ml-2" src="assets/icons/Activity.png" />
+                        </div>
+                    </div>
+                    <div class="w-full h-16 flex items-start  py-5 ">
+                        <div class=" coacheeLink flex flex-0 items-center -space-x-1.5">
+                            <ng-container class="margin-left-10 border-white">
+                                <div class="flex  flex-row">
+                                    <img class="flex-0 w-12 h-12 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                                        [src]="getAvatarUrl(sessionData?.coachId,'coach')" />
+                                    <div class="flex flex-col ml-5">
+                                        <div>{{sessionData?.coachName}}</div>
+
+                                        <div class="flex flex-row justify-center">
+                                            <img class="mr-5 message" src="assets/icons/message.svg" />
+
+                                            <span><img class="mr-2 chat" src="assets/icons/chat.svg" /></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col h-40 w-full border-t-2 px-8 py-6">
+                    <div class="flex justify-between w-full">
+                        <h3 class="font-bold text-lg font-700">Coachees</h3>
+                        <div class="icon text-gray-200 text-base flex-row flex items-center">
+                            Add <img class="mr-0 h-3 w-3 ml-2" src="assets/icons/Activity.png" />
+                        </div>
+                    </div>
+                    <div class="w-full h-16 flex items-start  py-5 ">
+                        <div *ngIf="sessionData?.coacheeInfo?.length>0 "
+                            class=" coacheeLink flex flex-0 items-center -space-x-1.5">
+                            <ng-container class="margin-left-10 border-white"
+                                *ngFor="let coach of sessionData?.coacheeInfo; let i = index">
+                                <img *ngIf="getAvatarUrl(coach.coacheeId,'coache')?.length>1 && i <4"
+                                    class="flex-0 w-12 h-12 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                                    [src]="getAvatarUrl(coach.coacheeId,'coache')">
+                                <div *ngIf="getAvatarUrl(coach.coacheeId,'coache')?.length===1 && i <4"
+                                    class="flex items-center border-white justify-center w-12 h-12 rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                    {{getAvatarUrl(coach.coacheeId,'coache')}}
+                                </div>
+                            </ng-container>
+                            <div *ngIf="sessionData?.coacheeInfo?.length > 4"
+                                class="flex-0 flex justify-center border-white items-center text-white-200 w-12 h-12 rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800 object-cover uppercase bg-sky-200 text-white-600 ">
+                                + {{ (sessionData?.coacheeInfo?.length - 4)}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

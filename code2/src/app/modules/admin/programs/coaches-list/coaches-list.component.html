@@ -1,0 +1,87 @@
+<div class="flex flex-col">
+    <ng-container>
+        <div class="flex items-center justify-between">
+            <div *ngIf="!(type === 'competencies')" class="title text-primary roboto-medium">Select {{ type }}</div>
+            <div *ngIf="type === 'competencies'" class=" text-primary title roboto-medium">Competencies</div>
+            <div class=" flex items-center ml-1.5 text-md font-rubik-400 text-secondary">More
+                <mat-icon (click)="viewMoreExpand(type)" class="icon-size-4 text-hint ml-1.5"
+                    [svgIcon]="'arrow_forward'">
+                </mat-icon>
+            </div>
+
+        </div>
+    </ng-container>
+    <section [ngClass]="{'hide': (!(type === 'competencies') && (viewMore ==='hide'))}"
+        class="search-bar flex flex-row p-3 justify-between content-center items-center">
+        <div class="search  flex flex-row w-full justify-between content-center items-center">
+            <mat-icon>search</mat-icon>
+            <input class="input font-rubik-400 mx-4" placeholder="Search Coach Name"
+                (input)="filterData(searchField.value , type)" #searchField />
+            <div class="icon-bar">
+                <img class="mr-0" src="assets/icons/filter.png" />
+            </div>
+        </div>
+    </section>
+    <section class="coach-list  overflow-y-auto h-fit " 
+    [ngClass]="{'hide': (viewMore ==='hide'), 'h-30': (type === 'competencies' && viewMore === 'short'), 'h-40': (!(type === 'competencies')&& viewMore === 'short'), 'max-h-60': (viewMore === 'side-bar'), 'max-h-120': (viewMore === 'expand'),'h-0': (viewMore === 'hide')}" 
+    >
+        <div class="flex-auto overflow-y-auto">
+            <ng-container>
+                <ng-container class="flex flex-row" *ngFor="let item of filterListData; ">
+                    <div class="z-20 flex items-center py-5 px-2 cursor-pointer border-b">
+                        <div *ngIf="!(type === 'competencies')"
+                            class="relative flex flex-0 items-center justify-center w-10 h-10">
+                            <ng-container *ngIf="item.profilePic">
+                                <img class="w-full h-full rounded-full object-cover" [src]="profilePicPath + item.profilePic"
+                                    alt="Contact avatar" />
+                            </ng-container>
+                            <ng-container *ngIf="!item.profilePic">
+                                <div
+                                    class="flex items-center justify-center w-full h-full rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                    {{item.name.charAt(0)}}
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="min-w-0 ml-4">
+                            <div class=" font-rubik-500 text-primary font-medium leading-5 truncate">{{item.name}}</div>
+                            <div class=" font-rubik-500 text-primary leading-5 text-sm  text-secondary truncate "
+                                *ngIf="type === 'coaches'">
+                                {{ item.jobTitle }}
+                            </div>
+                            <div class=" font-rubik-500 text-secondary text-sm leading-5 truncate "
+                                *ngIf="type === 'coachees'">{{item.email}}</div>
+                        </div>
+                        <div class="flex flex-col items-end self-start ml-auto pl-2">
+                            <ng-container>
+                                <mat-checkbox   *ngIf="(type === 'coaches')"
+                                [checked]="selectedList.includes(item.id)"
+                                                [color]="'primary'"
+                                                (change)="toggleSelectedCoach(item.id, $event)"
+                                    (click)="$event.stopPropagation()">
+                                </mat-checkbox>
+                                <mat-checkbox   *ngIf="(type === 'coachees')"
+                                [checked]="selectedList.includes(item.userId)"
+                                                [color]="'primary'"
+                                                (change)="toggleSelectedCoach(item.userId, $event)"
+                                    (click)="$event.stopPropagation()">
+                                </mat-checkbox>
+                                <mat-checkbox  *ngIf="(type === 'competencies')"
+                                [checked]="selectedList.includes(item.name)"
+                                                [color]="'primary'"
+                                                (change)="toggleSelectedCoach(item.name, $event)"
+                                    (click)="$event.stopPropagation()">
+                                </mat-checkbox>
+                            </ng-container>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </div>
+    </section>
+
+    <section class="footer" *ngIf=" !(viewMore === 'hide')">
+        <button *ngIf="type === 'competencies'" (click)="addSelected()" class="add-btn">Add Selection</button>
+        <button *ngIf="!(type === 'competencies')" (click)="addSelected()" class="add-btn">Add Selected</button>
+        <span class="clear-selection" (click)="clearSelections()"> clear-selection </span>
+    </section>
+</div>

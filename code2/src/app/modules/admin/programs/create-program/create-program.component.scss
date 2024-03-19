@@ -1,0 +1,150 @@
+.program-form {
+  width: 100%;
+  padding-right: 0px;
+}
+.margin-left-10 {
+  margin-left: -10px;
+  border-radius: 50%;
+  
+}
+
+::ng-deep .mat-pseudo-checkbox {
+  border: none !important;
+  display: none !important;
+}
+
+::ng-deep .mat-select-arrow {
+  display: none !important;
+}
+
+
+.compentency {
+  ::ng-deep .mat-standard-chip {
+    border-radius: 4px !important;
+    border: 1px solid #79869F !important;
+    background-color: transparent !important;
+  }
+}
+
+
+.btn {
+  width: 112px;
+  height: 35px;
+}
+
+
+
+.program-full-width {
+  width: 100%;
+
+  .mat-form-field {
+    width: 100% !important;
+    padding-right: 27.66px;
+  }
+
+
+  ::ng-deep .mat-form-field-flex>.mat-form-field-infix {
+    padding: 1px 0 13px 0px !important;
+  }
+
+  // ::ng-deep .mat-form-field-flex .mat-form-field-infix .mat-form-field-label-wrapper {
+  //   top: -2em !important;
+  // }
+
+  ::ng-deep .mat-form-field-suffix {
+    top: 4px !important;
+    font-size: 80%;
+  }
+
+  .mat-option {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+
+  }
+}
+
+
+
+.coache {
+  ::ng-deep .mat-select-panel {
+    left: 23px;
+  
+  }
+}
+::ng-deep .mat-select-panel {
+   min-width: calc(100% + 51px) !important;
+  transform: scaleY(1);
+  background: #FFFFFF;
+  box-shadow: 0px 50px 100px rgb(0 0 0 / 10%) !important;
+  border-radius: 0px 0px 20px 20px !important;
+  position: absolute;
+  left: 23px;
+  top: 50px;
+  overflow: auto;
+
+}
+
+.border-white {
+  border: 1.5px solid white;
+}
+.coach-deatis-list {
+  flex: 1;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: rgba(25, 41, 101, 0.9);
+  margin-left: 6.48px;
+  margin-bottom: 5px;
+}
+
+.coach-title {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 4px;
+  letter-spacing: 0.02em;
+}
+
+.text-area {
+  width: 100%;
+
+  .mat-form-field {
+    width: 100% !important;
+    padding-right: 27.66px;
+
+  }
+
+  textarea.mat-input-element {
+    height: 253px;
+    margin-top: 30px;
+    background: #F5F5F7;
+    opacity: 0.5;
+    border-radius: 10px;
+  }
+
+}
+
+td {
+  padding-right: 8px;
+}
+
+.md-datepicker-input-container {
+  width: 300px;
+}
+
+::ng-deep .mat-datepicker-content .mat-calendar {
+  width: 359px !important;
+  padding: 0 20px;
+  height: 373px !important;
+}
+
+.footer {
+  padding-left: 13px;
+  margin-right: 34px;
+  justify-content: space-between;
+}

@@ -1,0 +1,207 @@
+<form [formGroup]="programForm">
+    <div class="grid grid-cols-2 gap-3 text-primary">
+        <div class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+            <mat-form-field class="w-full" required>
+                <mat-label class="mb-3 font-rubik-600 ">Program Name</mat-label>
+                <input matInput formControlName="programName" placeholder="Program Name" />
+                <mat-error *ngIf="programForm.controls.programName.invalid">Name is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+            <mat-form-field class="w-full">
+                <mat-label class="mb-3 font-rubik-600">Program Manager</mat-label>
+                <mat-select formControlName="programManager">
+
+                    <mat-option *ngFor="let programManger of programMangers" [value]="programManger.id">
+                        {{programManger.name}}</mat-option>
+                </mat-select>
+                <mat-icon matSuffix>keyboard_arrow_down</mat-icon>
+                <mat-error *ngIf="programForm.controls.programManager.invalid">Program Manger is required</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- start date section  -->
+        <div class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+            <mat-form-field class="w-full">
+                <mat-label class=" mb-3 font-rubik-600">Start Date</mat-label>
+                <input matInput formControlName="startDate" [matDatepicker]="startDate" placeholder="Start Date" />
+                <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                <mat-datepicker #startDate></mat-datepicker>
+                <mat-error *ngIf="programForm.controls.startDate.invalid">Date is required</mat-error>
+
+            </mat-form-field>
+        </div>
+
+        <!-- end date section  -->
+        <div class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+            <mat-form-field class="w-full">
+                <mat-label class=" mb-3 font-rubik-600">End Date</mat-label>
+                <input formControlName="endDate" matInput [matDatepicker]="endDate" placeholder="End Date" />
+                <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                <mat-error *ngIf="programForm.controls.startDate.invalid">Date is required</mat-error>
+
+                <mat-datepicker #endDate></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <!-- compentencies Section -->
+        <div class="col-span-2 w-full compentency">
+
+            <mat-form-field class="w-full flex flex-col py-8">
+
+
+                <mat-label class=" mb-3 font-rubik-600">Competencies</mat-label>
+                <mat-select formControlName="compentenciesControl" multiple>
+                    <mat-select-trigger><mat-chip-list class="col-span-5 w-full ">
+                            <mat-chip *ngFor="let selectedCompentency of selectedCompentencies " [removable]="true"
+                                (removed)="onCompentenciesRemoved(selectedCompentency)">
+                                {{ selectedCompentency }}
+                                <mat-icon matChipRemove>clear</mat-icon>
+                            </mat-chip>
+                        </mat-chip-list> </mat-select-trigger>
+                    <mat-option *ngFor="let compentency of compentencies"
+                        (click)="toggleSelectedCompentency(compentency.name)" [value]="compentency.name">
+                        {{compentency.name}}</mat-option>
+
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!-- Add coaches Section -->
+        <div class="  col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+            <mat-form-field class="w-full coache">
+                <mat-label class=" mb-3 font-rubik-600">Add Coaches</mat-label>
+
+
+
+                <mat-select placeholder="Add Coachees" multiple formControlName="coaches">
+
+                    <mat-select-trigger>
+                        <div *ngIf="selectedCoaches.length>0 "
+                            class=" coacheeLink flex flex-0 items-center -space-x-1.5">
+                            <ng-container class="margin-left-10 border-white"
+                                *ngFor="let id of selectedCoaches; let i = index">
+                                <img *ngIf="getAvatarUrl(id,'coach').length>1 && i <4"
+                                    class="flex-0 w-10 h-10 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                                    [src]="getAvatarUrl(id,'coach')">
+                                <div *ngIf="getAvatarUrl(id,'coach').length===1 && i <4"
+                                    class="flex items-center border-white justify-center w-10 h-10 rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                    {{getAvatarUrl(id,'coach')}}
+                                </div>
+                            </ng-container>
+                            <div *ngIf="selectedCoaches.length > 4"
+                                class="flex-0 flex justify-center border-white items-center text-white-200 w-10 h-10 rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800 object-cover uppercase bg-sky-200 text-white-600 ">
+                                + {{ (selectedCoaches.length - 4)}}
+                            </div>
+                        </div>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let coach of coachesList" [value]="coach.id">
+                        <div class="card-conatiner flex flex-row justify-between items-center">
+                            <img class="coach-avatar" *ngIf="coach.profilePic" [alt]="coach.name.charAt(0)"
+                                [src]="profilePicPath + coach.profilePic" />
+                            <div *ngIf="!coach.profilePic"
+                                class="flex items-center justify-center coach-avatar rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                {{coach.name.charAt(0)}}
+                            </div>
+                            <div class="coach-deatis-list">
+                                {{ coach.name
+                                }}{{ coach.lastName }}
+                                <div class="coach-title">
+                                    {{ coach.jobTitle }}
+                                </div>
+                            </div>
+                            <mat-checkbox [color]="'primary'" [checked]="selectedCoaches.includes(coach.id)"
+                                (change)="toggleSelectedCoach(coach.id)">
+                            </mat-checkbox>
+                        </div>
+                    </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>add</mat-icon>
+                <mat-error *ngIf="programForm.controls.coaches.invalid">Coache is required</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Add coachees Section -->
+        <div class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+            <mat-form-field class="w-full">
+                <mat-label class=" mb-3 font-rubik-600">Add Coachees</mat-label>
+                <div *ngIf="selectedCoachees.length>0 " class=" coacheeLink
+                     flex flex-0 items-center -space-x-1.5">
+                    <ng-container class="margin-left-10 border-white"
+                        *ngFor="let id of selectedCoachees; let i = index">
+                        <img *ngIf="getAvatarUrl(id,'coachee').length>1 && i <4"
+                            class="flex-0 w-10 h-10 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                            [src]="getAvatarUrl(id,'coachee')">
+                        <div *ngIf="getAvatarUrl(id,'coachee').length===1 && i <4"
+                            class="flex items-center border-white justify-center w-10 h-10 rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                            {{getAvatarUrl(id,'coachee')}}
+                        </div>
+                    </ng-container>
+                    <div *ngIf="selectedCoachees.length > 4"
+                        class="flex-0 flex justify-center border-white items-center text-white-200 w-10 h-10 rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800 object-cover uppercase bg-sky-200 text-white-600 ">
+                        + {{ (selectedCoachees.length - 4)}}
+                    </div>
+                </div>
+                <mat-select placeholder="Add Coachees" multiple formControlName="coachees">
+
+                    <mat-select-trigger class="hidden"></mat-select-trigger>
+                    <mat-option *ngFor="let coachee of coacheesList" [value]="coachee.userId">
+                        <div class="card-conatiner flex flex-row justify-between items-center">
+                            <img class="coach-avatar" *ngIf="coachee.profilePic" [alt]="coachee.name.charAt(0)"
+                                [src]="profilePicPath + coachee.profilePic" />
+                            <div *ngIf="!coachee.profilePic"
+                                class="flex items-center justify-center coach-avatar rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                {{coachee.name.charAt(0)}}
+                            </div>
+                            <div class="coach-deatis-list">
+                                {{ coachee.name
+                                }}{{ coachee.lastName }}
+                                <div class="coach-title">
+                                    {{ coachee.jobTitle }}
+                                </div>
+                            </div>
+                            <mat-checkbox [color]="'primary'" [checked]="selectedCoachees.includes(coachee.userId)"
+                                (change)="toggleSelectedCoachee(coachee.userId)">
+                            </mat-checkbox>
+                        </div>
+                    </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>add</mat-icon>
+                <mat-error *ngIf="programForm.controls.coachees.invalid">Coachee is required</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Add Description Section -->
+        <div class="col-span-2 w-full">
+            <mat-form-field class="w-full">
+                <mat-label class=" mb-3 font-rubik-600">Program Description</mat-label>
+                <textarea matInput formControlName="programDescription"></textarea>
+                <mat-error *ngIf="programForm.controls.programDescription.invalid">Description is required</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Add tags Section -->
+        <div class="col-span-2 w-full">
+            <mat-form-field class="w-full">
+                <mat-chip-list #taglist>
+
+                    <mat-chip selected color="primary" *ngFor="let Tag of Tags" [selectable]="selectable"
+                        [removable]="removable" (removed)="remove(Tag)">
+                        {{Tag}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel
+                        </mat-icon>
+                    </mat-chip>
+                    <input formControlName="tags" placeholder="Add Tags" [matChipInputFor]="taglist"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" />
+                </mat-chip-list>
+                <mat-label class=" mb-3 font-rubik-600">Add Tags</mat-label>
+            </mat-form-field>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="col-span-2 w-full items-end flex justify-end">
+            <button class="primary btn" (click)="OnSubmit()">Save</button>
+            <button class="secondary btn">Cancel</button>
+        </div>
+    </div>
+</form>

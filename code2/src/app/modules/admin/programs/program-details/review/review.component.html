@@ -1,0 +1,65 @@
+<div class="flex flex-col h-full w-full">
+    <div class="flex flex-row justify-between mx-8 mt-4">
+        <div class="roboto-medium text-2xl">Reviews</div>
+        <div class="flex flex-row ">
+            <div class="text-sm text-gray-200 ml-4 roboto-medium">
+                <div class="flex flex-row ">
+                    <mat-form-field>
+                        <mat-select panelClass="engagement-filter" [(value)]="selected" >
+                            <mat-option value="all">All Review</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h-4/5 ">
+        <ng-container *ngFor=" let reviewData of reviewDataArray">
+
+            <div class="body mx-10 mt-8 pb-8 border-b-2">
+
+                <div class="flex flex-row items-center">
+                    <img class="coach-avatar" *ngIf="reviewData?.profilePic" [alt]="reviewData?.name.charAt(0)"
+                        [src]="profilePicPath + reviewData?.profilePic" />
+                    <div *ngIf="!reviewData?.profilePic"
+                        class="flex items-center justify-start coach-avatar rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                        {{reviewData?.name.charAt(0)}}
+                    </div>
+                    <div class="ml-4 roboto-medium text-sm text-primary">
+
+                        <div class="text-gray-600">{{reviewData?.profileType}}</div>
+                        <div class="">{{reviewData?.name}}</div>
+
+                    </div>
+
+                </div>
+
+                <div class="review-bar text-sm font-roboto-700 flex flex-row justify-between my-4">
+                    <div class="flex flex-row justify-between">
+                        <div class="  pr-3 border-r-2">
+                            {{reviewData.skill}}
+                        </div>
+                        <div class="pl-3">
+                            {{reviewData.sessionType}}
+                        </div>
+                    </div>
+                    <div>
+                        <app-rating-details></app-rating-details>
+                    </div>
+
+                </div>
+                <div class="description text-sm text-gray-600">
+                    {{reviewData.description}}
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class=" mx-10 flex-auto items-center rounded-md flex-col my-4  h-12 m-auto border-2">
+        <p class="text-primary font-rubik-600 text-base w-fit m-auto mt-4  h-fit">
+            See More Review
+        </p>
+
+
+    </div>
+</div>

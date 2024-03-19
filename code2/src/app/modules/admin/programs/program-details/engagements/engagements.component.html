@@ -1,0 +1,24 @@
+<div class="flex flex-col w-full">
+    <div class="flex flex-row justify-between mx-6 mt-4">
+        <div class="roboto-medium text-2xl">Engagements</div>
+        <div class="flex flex-row ">
+            <div class="text-sm text-gray-200 ml-4 roboto-medium">
+                <div class="flex flex-row ">
+                    <mat-form-field>
+                        <mat-select panelClass="engagement-filter" [(value)]="selected" (selectionChange)="programEngagement($event.value)">
+                            <mat-option value="all">All Engagements</mat-option>
+                            <mat-option value="oneonoonesession">One on One</mat-option>
+                            <mat-option value="groupsession">Group</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="text-base flex items-center font-grey ml-4 roboto-medium cursor-pointer" (click)="addEngagement()">
+                + Engagement
+            </div>
+        </div>
+    </div>
+    <app-table *ngIf="!isLoading" class="w-full h-full" [headerColumns]="tableColumns" [tableForm]="VOForm"
+        [displayedColumns]="displayedColumns" [tableData]="tableData" [showEdit]="editVisible"
+        (deleteClick)="removeEngagement($event)"></app-table>
+</div>

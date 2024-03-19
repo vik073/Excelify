@@ -1,0 +1,109 @@
+<div class="lg:col-span-2 flex flex-col  h-fit w-full flex-auto  bg-card shadow rounded-2xl ">
+  <div class="flex flex-col items-start justify-between">
+    <app-program-side-header-bar class="w-full border-b-2" [coacheData]="coacheData" [oneOnOneSessions]="oneOnOneCount"
+      [groupSessions]="groupSessionCount" [headerText]="'Overview'"
+      [engagementCount]="data?.engagementCount"></app-program-side-header-bar>
+
+    <div class=" w-full roboto-regular border-b-2 px-8 pb-6 text-base mt-6 grey text-center flex-row items-center flex">
+      <svg viewBox="0 0 100 100" class="small" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+        data-value="data?.attendance">
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FF2779" />
+            <stop offset="100%" stop-color="#FF635C" />
+          </linearGradient>
+        </defs>
+        <defs>
+          <linearGradient id="grey-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#F5F5F7" />
+            <stop offset="100%" stop-color="#F5F5F7" />
+          </linearGradient>
+        </defs>
+        <circle r="45" cx="50" cy="50" stroke="url(#grey-gradient)" stroke-width="6" />
+        <!-- 282.78302001953125 is auto-calculated by path.getTotalLength() -->
+        <path class="attendance" d="M5,50a45,45 0 1,0 90,0a45,45 0 1,0 -90,0" stroke-linecap="round"
+          stroke-linejoin="round" stroke-dashoffset="282.78302001953125" stroke-dasharray="282.78302001953125" />
+        <text x="50" y="50" text-anchor="middle" dominant-baseline="central" font-size="20">{{data?.attendance}}%</text>
+      </svg>
+      <div class="flex flex-col ml-4">
+        <div class="flex flex-row items-start text-base roboto-medium text-blue-900">
+          Attendence
+        </div>
+        <div class=" flex flex-row mt-1">
+          <span class="roboto-regular text-sm "> Completed difficulty with different challanges
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class=" w-full roboto-regular border-b-2 px-8 items-center pb-6 text-base mt-6 grey text-center flex-row flex">
+      <svg viewBox="0 0 100 100" class="small" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+        data-value="data?.goalsProgress">
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FF2779" />
+            <stop offset="100%" stop-color="#FF635C" />
+          </linearGradient>
+        </defs>
+        <defs>
+          <linearGradient id="grey-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#F5F5F7" />
+            <stop offset="100%" stop-color="#F5F5F7" />
+          </linearGradient>
+        </defs>
+        <circle r="45" cx="50" cy="50" stroke="url(#grey-gradient)" stroke-width="6" />
+        <!-- 282.78302001953125 is auto-calculated by path.getTotalLength() -->
+        <path class="goal" d="M5,50a45,45 0 1,0 90,0a45,45 0 1,0 -90,0" stroke-linecap="round" stroke-linejoin="round"
+          stroke-dashoffset="282.78302001953125" stroke-dasharray="282.78302001953125" />
+        <text x="50" y="50" class="text-secondary" text-anchor="middle" dominant-baseline="central"
+          font-size="20">{{data?.goalsProgress}}%</text>
+      </svg>
+      <div class="flex flex-col ml-4">
+        <div class="flex flex-row items-start text-base roboto-medium text-blue-900">
+          <span class="mr-2  roboto-regular text-secondary"> {{data?.completedGoals + data?.pendingGoals}}
+          </span> Assigned Goals
+        </div>
+        <div class=" flex flex-row mt-1 text-sm">
+          <span class="mr-2  roboto-regular text-secondary"> {{data?.completedGoals}} </span> Completed
+          <span class="ml-2 mr-2  roboto-regular text-secondary"> {{data?.pendingGoals}}</span> Pending
+        </div>
+      </div>
+    </div>
+
+    <div class=" w-full roboto-regular  px-8 pb-6 text-base mt-6 grey text-center flex-row flex">
+
+      <!-- Change data-value in svg element to impact progress -->
+      <svg viewBox="0 0 100 100" class="small" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+        data-value="data?.taskProgress">
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FF2779" />
+            <stop offset="100%" stop-color="#FF635C" />
+          </linearGradient>
+        </defs>
+        <defs>
+          <linearGradient id="grey-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#F5F5F7" />
+            <stop offset="100%" stop-color="#F5F5F7" />
+          </linearGradient>
+        </defs>
+        <circle r="45" cx="50" cy="50" stroke="url(#grey-gradient)" stroke-width="6" />
+        <!-- 282.78302001953125 is auto-calculated by path.getTotalLength() -->
+        <path class="task" d="M5,50a45,45 0 1,0 90,0a45,45 0 1,0 -90,0" stroke-linecap="round" stroke-linejoin="round"
+          stroke-dashoffset="282.78302001953125" stroke-dasharray="282.78302001953125" />
+        <text x="50" y="50" text-anchor="middle" class="text-secondary" dominant-baseline="central"
+          font-size="20">{{data?.taskProgress}}%</text>
+      </svg>
+      <div class="flex flex-col ml-4 ">
+        <div class="flex flex-row items-start text-base roboto-medium text-blue-900">
+          <span class="mr-2  roboto-regular text-secondary"> {{data?.completedTasks + data?.pendingTasks}}
+          </span> Assigned Tasks
+        </div>
+        <div class=" flex flex-row mt-1 text-sm">
+          <span class="mr-2  roboto-regular text-secondary"> {{data?.completedTasks}} </span> Completed
+          <span class="ml-2 mr-2  roboto-regular text-secondary"> {{data?.pendingTasks}} </span> Pending
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

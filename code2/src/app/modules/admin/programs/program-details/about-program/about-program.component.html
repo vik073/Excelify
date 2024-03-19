@@ -1,0 +1,39 @@
+<div class="flex justify-between flex-col  w-full p-8 ">
+    <div class="flex flex-row justify-between">
+        <h3 class="roboto-medium text-2xl">Description</h3>
+        <div *ngIf="!isEditable" class="icon" (click)="onEdit()">
+            <img class="mr-0" src="assets/icons/edit-ico.png" />
+        </div>
+
+        <div *ngIf="isEditable" style="width: 45px;">
+            <mat-icon class="min-w-0 w-5 min-h-0 text-sm" matTooltip="Save Changes"
+                (click)="saveAbout()">check_circle</mat-icon>
+            <mat-icon class="text-sm text-gray-600" matTooltip="Cancel Changes" color="warn"
+                (click)="onCancel()">cancel</mat-icon>
+        </div>
+    </div>
+
+
+    <div class="flex flex-col mt-4">
+        <div  class="w-full h-36 overflow-hidden main-img">
+            <img class="mr-0" src="assets/images/description.png" />
+        </div>
+        <div *ngIf="!isEditable" class="description font-rubik-400 text-sm mt-4">
+            {{programDetails.description}}
+        </div>
+
+        <div *ngIf="isEditable" class="col-span-2 gap-2 edit-img sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+            <mat-form-field appearance="outline">
+                <mat-label>Upload cover image</mat-label>
+                <ngx-mat-file-input placeholder="Upload image"></ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div *ngIf="isEditable" class="description font-rubik-400 text-sm mt-4">
+            <mat-form-field class="w-full text-primary  elip-3 text-sm" appearance="none">
+                <input matInput value="{{programDetails.description}}" placeholder="Description" />
+            </mat-form-field>
+        </div>
+    </div>
+</div>

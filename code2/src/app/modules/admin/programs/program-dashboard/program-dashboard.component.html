@@ -1,0 +1,237 @@
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
+
+    <mat-drawer-container class="flex-auto h-full w-full bg-card dark:bg-transparent"
+        (backdropClick)="onBackdropClicked()">
+
+        <!-- Drawer -->
+        <mat-drawer class="w-full sm:w-128 dark:bg-gray-900 shadow rounded-l-2xl h-132 m-auto" [mode]="drawerMode"
+            [opened]="drawerOpened" [position]="'end'" [disableClose]="true" #matDrawer>
+            <router-outlet></router-outlet>
+        </mat-drawer>
+        <mat-drawer-content>
+            <div class="flex w-full flex-col flex-auto min-w-0 font-roboto ">
+
+                <div class="w-full px-10 sm:p-6">
+                    <div class="flex justify-between items-end ">
+                        <app-header class="w-full" [pageTitle]="pageTitle"
+                            [pageDescription]="pageDescription"></app-header>
+
+                        <app-search class="w-full" *ngIf="!createProgram"
+                            (searchTextChanged)="onSearchTextEntered($event)" (toggleChanged)="toggle($event)"
+                            (sortSDate)="sortStartDate($event)" (createProgramEvent)="createProgramEvent($event)"
+                            (sortEDate)="sortEndDate($event)"></app-search>
+                    </div>
+                    <div *ngIf="!createProgram"
+                        class="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3 lg:grid-cols-3  xl:grid-cols-3 2xl:grid-cols-4 gap-6 w-full min-w-0 mt-8">
+                        <fuse-card *ngFor="let program of programArray; let i= index" class="w-full">
+                            <div class="flex flex-col flex-auto items-center w-full max-w-md bg-card shadow rounded-2xl overflow-hidden md:w-80 lg:w-80 xl:w-90 w-80">
+                                <div class="flex flex-col flex-auto w-full px-6  py-4 text-start">
+                                    <div class="flex justify-end icon pb-2">
+                                        <button *ngIf="program.isEditable">
+                                            <img class="mr-2 save cursor-pointer" (click)="saveProgram(program)"
+                                                src="assets/icons/save.svg" />
+                                        </button>
+                                        <button *ngIf="program.isEditable">
+                                            <img class="mr-2 delete cursor-pointer" (click)="onCancel(program)"
+                                                src="assets/icons/cancel.svg" />
+                                        </button>
+                                        <button *ngIf="!program.isEditable">
+                                            <img class="mr-2 delete cursor-pointer" (click)="onEdit(program)"
+                                                src="assets/icons/edit.svg" />
+                                        </button>
+                                        <button (click)="openDialog()" *ngIf="!program.isEditable">
+                                            <img class="mr-2 delete cursor-pointer" src="assets/icons/delete.svg" />
+                                            <!-- <mat-icon class="min-w-0 w-4 min-h-0 text-sm">delete_outline</mat-icon> -->
+                                        </button>
+                                    </div>
+                                    <div class="w-full h-40 bg-gray-200 rounded-lg relative">
+                                        <img routerLink="/programs/details/{{program.programId}}"
+                                            class="rounded-lg absolute w-full h-full"
+                                            src="../../../../../assets/images/bg-image.jpg">
+                                        <div class="absolute p-4 w-full">
+                                            <div class="flex justify-between w-full">
+                                                <div
+                                                    class="bg-white h-7 w-24 rounded-md flex items-center p-2 text-sm font-400 ">
+                                                    {{ program.status }}
+                                                </div>
+
+                                                <div class="flex star items-center bg-white h-7 w-28 rounded-md px-2">
+                                                    <app-rating [rating]="2" class="w-full"></app-rating>
+                                                </div>
+
+                                                <span *ngIf="program.rating>0"
+                                                    class="px-1 text-sm font-400">{{program.rating}}</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="absolute bottom-0 sm:p-4 md:p-2 lg:p-2  xl:p-2 w-full sm:font-size:7px md:font-size:8px lg:font-size: 11px">
+                                            <div class="h-13 -mb-8 bg-white rounded-md flex items-center justify-between  text-blue-900 w-full"
+                                                style="font-size: 9px">
+                                                <div class="flex flex-row items-center border-r-2  border-grey-900 w-full px-2">
+                                                    <mat-datepicker-toggle [disabled]="!program.isEditable"
+                                                    matIconSuffix [for]="picker">
+                                                        <mat-icon class="min-w-0 w-4 min-h-0 text-sm">calendar_today</mat-icon>
+                                                    </mat-datepicker-toggle>
+                                                    <div class="flex flex-col items-center ">
+                                                        <div class="roboto-medium w-full text-xs sm:font-size:7px md:font-size:8px lg:font-size:11px ">
+                                                            Start Date
+                                                            <mat-datepicker #picker></mat-datepicker>
+                                                        </div>
+
+                                                        <input [readonly]="!program.isEditable"
+                                                            *ngIf="program.isEditable" #startDate matInput
+                                                            [matDatepicker]="picker" [value]="program.startDate"
+                                                            (dateChange)="onStartDateChange(startDate.value, program)">
+                                                        <div *ngIf="!program.isEditable"
+                                                            class="roboto-regular w-full  text-xs lg:font-size: 11px">
+                                                            {{ program.startDate | date: format}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-row items-center w-full px-2">
+
+                                                    <mat-datepicker-toggle [disabled]="!program.isEditable"
+                                                        matIconSuffix [for]="picker2">
+                                                        <mat-icon
+                                                            class="min-w-0 w-5 min-h-0 text-xs">date_icon</mat-icon>
+                                                    </mat-datepicker-toggle>
+                                                    <div class="flex flex-col items-center">
+                                                        <div
+                                                            class="roboto-medium w-full text-xs sm:font-size:7px md:font-size:8px lg:font-size: 11px">
+                                                            End Date
+                                                            <mat-datepicker #picker2></mat-datepicker>
+                                                        </div>
+                                                        <input [disabled]="!program.isEditable"
+                                                            [readonly]="!program.isEditable" *ngIf="program.isEditable"
+                                                            #endDate matInput [matDatepicker]="picker2"
+                                                            [value]="program.endDate"
+                                                            (dateChange)="onEndDateChange(endDate.value, program)">
+                                                        <div *ngIf="!program.isEditable"
+                                                            class="w-full roboto-regular text-xs">
+                                                            {{
+                                                            program.endDate | date: format }}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="flex flex-col items-center justify-center border border-white-500 px-3  h-13 w-20 rounded-lg bg-blue-900">
+                                                    <div class="roboto-medium text-sm text-white">{{program.countDays}}
+                                                        Days</div>
+                                                    <div class="text-white text-sm roboto-regular">Remaining</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center mt-8">
+                                        <div class="w-8 h-8  rounded-full" *ngIf="!program.isEditable">
+                                            <img class="coach-avatar-img" *ngIf="program.managerProfilePic"
+                                                [src]="profilePicPath + program.managerProfilePic" />
+                                            <div *ngIf="!program.managerProfilePic"
+                                                class="flex items-center justify-center coach-avatar-img rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                                {{program.managerName.charAt(0)}}
+                                            </div>
+                                        </div>
+                                        <div class="ml-3 w-40 mr-4 text-base text-primary roboto-medium manager">
+                                            <input *ngIf="!program.isEditable" matInput value="{{program.managerName}}"
+                                                placeholder="Manager Name" />
+                                            <mat-form-field placeholder="Manager Name" *ngIf="program.isEditable"
+                                                class="w-full h-8" required>
+                                                <mat-select panelClass="manager-list-panel" placeholder="Manager Name"
+                                                    [(value)]="selectedManagerId">
+                                                    <mat-option *ngFor="let manager of managerList"
+                                                        [value]="manager.id">
+                                                        {{manager.name}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <button *ngIf="program.isEditable">
+                                            <mat-icon class="min-w-0 w-5 min-h-0 text-sm">edit</mat-icon>
+                                        </button>
+                                    </div>
+                                    <div class="flex flex-row">
+                                        <div class="ux-gradient elip-1  text-secondary justify-items-start w">
+                                            <mat-form-field class="w-full text-secondary text-xl roboto-bold" required
+                                                appearance="none">
+                                                <input matInput value="{{program.programTitle}}"
+                                                    (change)="onProgramNameChange(program, $event)"
+                                                    [readonly]="!program.isEditable" placeholder="Program Name" />
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row">
+                                        <div class="text-blue elip-3 text-sm mt-1 w-full"
+                                            [ngClass]="{'border-b-2': (program.isEditable)}">
+
+                                            <mat-form-field class="w-full text-primary  elip-3 text-sm" required
+                                                appearance="none">
+                                                <textarea class="h-12 text-area" matInput
+                                                    value="{{program.description}}" [readonly]="!program.isEditable"
+                                                    placeholder="Program Name"
+                                                    (change)="onDescriptionChange(program, $event)"></textarea>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center justify-between pt-5 ">
+                                        <div class="flex flex-col items-center px-3">
+                                            <div class="ux-gradient font-size-14 font-bold text-secondary">
+                                                {{ program.coachCount }}
+                                            </div>
+                                            <div class="text-xs">Coaches</div>
+                                        </div>
+                                        <div class="flex flex-col items-center px-3 border-l-2">
+                                            <div class="ux-gradient font-size-14 font-bold  font-700 text-secondary ">
+                                                {{ program.coacheeCount }}
+                                            </div>
+                                            <div class="text-xs">Coachees</div>
+                                        </div>
+                                        <div class="flex flex-col items-center px-3 border-l-2">
+                                            <div class="ux-gradient font-size-14 font-bold text-secondary">
+                                                {{ program.engagementCount }}
+                                            </div>
+                                            <div class="text-xs">Engagement</div>
+                                        </div>
+                                        <div class="flex flex-col items-center px-3 border-l-2">
+                                            <div class="ux-gradient font-size-14 font-bold text-secondary">
+                                                {{ program.sessionCount }}
+                                            </div>
+                                            <div class="text-xs">Sessions</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="flex items-center px-4 w-full divide-x bg-gray-200"
+                                    [ngClass]="{'disable-grid': (program?.status !=='Active')}">
+                                    <a class="flex flex-auto items-center justify-center py-4 hover:bg-hover"
+                                        (click)="createTask('addCoach', program.programId)">
+                                        <mat-icon [svgIcon]="'heroicons_outline:activity'"
+                                            class="min-w-0 w-4  h-4 min-h-0">
+                                        </mat-icon>
+                                        <span class="ml-2 text-xs">Add Coach</span>
+                                    </a>
+                                    <a class="flex flex-auto items-center justify-center py-4 hover:bg-hover"
+                                        (click)="createTask('addCoachee', program.programId)">
+                                        <mat-icon [svgIcon]="'heroicons_outline:activity'"
+                                            class="min-w-0 w-4  h-4 min-h-0">
+                                        </mat-icon>
+                                        <span class="ml-2 text-xs">Add Coachees</span>
+                                    </a>
+                                    <a class="flex flex-auto items-center justify-center py-4 hover:bg-hover"
+                                        (click)="createTask('addEngagement', program.programId)">
+                                        <mat-icon [svgIcon]="'heroicons_outline:activity'"
+                                            class="min-w-0 w-4  h-4 min-h-0">
+                                        </mat-icon>
+                                        <span class="ml-2 text-xs">Add Engagement</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </fuse-card>
+                    </div>
+
+                </div>
+            </div>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</div>

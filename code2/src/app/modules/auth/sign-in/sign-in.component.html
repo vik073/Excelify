@@ -1,0 +1,193 @@
+<div class="login-container h-screen w-screen flex flex-col">
+    <nav
+        class="bg-white border-gray-200 dark:bg-white drop-shadow-md sticky top-0 z-50"
+    >
+        <div
+            class="flex flex-wrap justify-between items-center mx-0 px-4 py-2.5"
+        >
+            <a href="#" class="flex items-center">
+                <img
+                    src="assets/images/logo.png"
+                    class="mr-3 h-6 sm:h-9"
+                    alt="uexcelerate Logo"
+                />
+            </a>
+            <div class="flex items-center">
+                <i class="fa fa-bars fa-2x text-blue" aria-hidden="true"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="md:relative h-auto">
+        <div class="w-full h-full lg:grid lg:grid-cols-2 md:min-h-[725px]">
+            <form class="form-wrapper" [formGroup]="signInForm">
+                <h2 class="welcome-text">Welcome!</h2>
+                <p class="mt-2 mb-4 text-blue text-2xl">
+                    Unleash your potential <br />with the
+                    <b> Power of Coaching.</b>
+                </p>
+
+                <!-- <div class="mb-4 mt-4"> -->
+                <mat-form-field class="input-wrapper">
+                    <mat-label>Email</mat-label>
+                    <input
+                        id="email"
+                        formControlName="email"
+                        matInput
+                        class=""
+                    />
+
+                    <mat-error
+                        *ngIf="
+                            signInForm.controls['email'].hasError('required')
+                        "
+                        >Email is required</mat-error
+                    >
+                    <mat-error
+                        *ngIf="signInForm.controls['email'].hasError('email')"
+                        >Please enter valid Email</mat-error
+                    >
+                </mat-form-field>
+                <!-- </div> -->
+
+                <!-- <div class="mb-6"> -->
+                <mat-form-field class="input-wrapper">
+                    <mat-label>Password</mat-label>
+                    <input
+                        id="password"
+                        formControlName="password"
+                        matInput
+                        type="password"
+                        #passwordField
+                    />
+                    <button
+                        mat-icon-button
+                        type="button"
+                        (click)="
+                            passwordField.type === 'password'
+                                ? (passwordField.type = 'text')
+                                : (passwordField.type = 'password')
+                        "
+                        matSuffix
+                    >
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="passwordField.type === 'password'"
+                            [svgIcon]="'heroicons_solid:eye'"
+                        >
+                        </mat-icon>
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="passwordField.type === 'text'"
+                            [svgIcon]="'heroicons_solid:eye-off'"
+                        >
+                        </mat-icon>
+                    </button>
+                    <mat-error
+                        *ngIf="
+                            signInForm.controls['password'].hasError('required')
+                        "
+                        >Password is required</mat-error
+                    >
+                </mat-form-field>
+                <!-- </div> -->
+
+                <div class="flex items-center">
+                    <button
+                        class="login-btn text-white py-2 px-4 focus:outline-none focus:shadow-outline mr-2"
+                        type="submit"
+                        (click)="signIn()"
+                    >
+                        Login
+                        <span class="ml-2"
+                            ><i class="fas fa-angle-right"></i
+                        ></span>
+                    </button>
+                    <button
+                        class="bg-white shadow rounded-md p-1.5 flex focus:outline-none focus:shadow-outline mr-2"
+                    >
+                        <i class="fab fa-google text-3xl"></i>
+                    </button>
+                    <button
+                        class="bg-white shadow rounded-md p-1.5 flex focus:outline-none focus:shadow-outline"
+                    >
+                        <i
+                            class="fab fa-linkedin text-3xl"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </div>
+            </form>
+            <div class="hidden lg:block">
+                <svg
+                    viewBox="0 0 867 940"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <mask id="svgmask1">
+                        <rect
+                            opacity="1"
+                            x="423.209"
+                            y="-452"
+                            width="1374.5"
+                            height="845.848"
+                            rx="422.924"
+                            transform="rotate(45 423.209 -452)"
+                            fill="#ffffff"
+                        />
+                    </mask>
+                    <image
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xlink:href="assets/images/bitmap.png"
+                        mask="url(#svgmask1)"
+                    ></image>
+                </svg>
+            </div>
+        </div>
+        <div
+            class="w-full md:h-48 absolute bg-white md:mt-5 mt-0 shadow flex flex-wrap md:bottom-0 md:left-0"
+        >
+            <div class="md:pl-20 md:pt-12 w-full md:w-1/2 lg:w-1/3 p-6 lg:pb-0">
+                <div
+                    class="md:w-80 w-72 bg-gray-300 rounded-full h-1 mb-4 dark:bg-gray-300"
+                >
+                    <div
+                        class="progress-layer h-1 rounded-full dark:progress-layer"
+                        style="width: 75%"
+                    ></div>
+                </div>
+                <h3 class="text-xl text-blue">Forget Password —</h3>
+                <p class="text-blue">
+                    Reset your password with your <br />
+                    registered email.
+                </p>
+            </div>
+            <div
+                class="md:pl-6 md:pt-12 w-full md:w-1/2 lg:w-1/3 bg-grey p-6 lg:pb-0"
+            >
+                <div
+                    class="md:w-80 w-72 bg-gray-300 rounded-full h-1 mb-4 dark:bg-gray-300"
+                >
+                    <div
+                        class="bg-green h-1 rounded-full dark:bg-green"
+                        style="width: 0%"
+                    ></div>
+                </div>
+                <h3 class="text-xl text-blue">Login with Google —</h3>
+                <p class="text-blue">
+                    Now your login is google enabled, <br />
+                    Sign in Now.
+                </p>
+            </div>
+            <div class="md:pt-3 w-full lg:w-1/3 md:pr-6 p-4 lg:pb-0">
+                <h1 class="ele-text text-9xl font-bold">Elevate</h1>
+                <h3 class="text-4xl leading-9 text-blue ml-20">
+                    the leader within
+                </h3>
+                <p class="text-blue pt-2 text-right">
+                    © 2022 UEX Learning Technology Pvt Ltd. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

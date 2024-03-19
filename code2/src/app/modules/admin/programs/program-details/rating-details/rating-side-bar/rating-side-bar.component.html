@@ -1,0 +1,47 @@
+<div class="lg:col-span-2 flex flex-col  h-fit w-full flex-auto  bg-card shadow rounded-2xl ">
+    <div class="flex flex-col items-start justify-between">
+        <div class="flex flex-col h-96 w-full  pt-6 pb-3 ">
+
+            <!-- Title for form -->
+            <div class="flex justify-between w-full items-center px-8 mb-8">
+                <h3 class="font-bold text-primary text-xl font-roboto-700">Overview</h3>
+                <div class="icon">
+                    <img class="mr-0" src="assets/icons/threedot.png" />
+                </div>
+            </div>
+
+            <div class="h-56  w-full flex items-center  justify-center">
+                <app-side-bar-chart [progress]="60" [count]="'500'" [size] = "'chart'" [text]="'hello'"></app-side-bar-chart>
+            </div>
+            <!-- session-info -->
+            <div class="w-full h-10 flex   items-center justify-center">
+                <div class="session flex items-center flex-row mr-4">
+                    <div
+                        class="flex items-center justify-center w-8 h-8 rounded-full text-base text-white uppercase bg-primary ">
+                        212</div>
+                    <div class=" flex items-center text-sm roboto-regular ml-2"> Coach Reviews
+                    </div>
+                </div>
+                <div class="session  items-center flex flex-row">
+                    <div
+                        class="flex items-center justify-center w-8 h-8 rounded-full text-base uppercase text-white uppercase bg-secondary">
+                        30</div>
+                    <div class=" flex items-center text-sm roboto-regular ml-2"> Coachee Reviews
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex w-full flex-col h-24 border-t-2 px-8 ">
+            <div class="text-base text-primary roboto-medium my-4">Overall Rating</div>
+            <app-rating-details [rating]="4" class="w-full"></app-rating-details>
+        </div>
+        <div class="flex w-full flex-col h-24 border-t-2 px-8 ">
+            <div class="text-base text-primary roboto-medium my-4">Rating by Coaches</div>
+            <app-rating-details  [rating]="3" class="w-full"></app-rating-details>
+        </div>
+        <div class="flex w-full flex-col h-24 border-t-2 px-8 ">
+            <div class="text-base text-primary roboto-medium my-4">Rating by Coachees</div>
+            <app-rating-details [rating]="5" class="w-full"></app-rating-details>
+        </div>
+    </div>
+</div>

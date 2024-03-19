@@ -1,0 +1,264 @@
+:host {
+
+    ::ng-deep .mat-form-field-wrapper {
+      padding-bottom: 0px;
+    }
+
+    ::ng-deep .mat-form-field-infix {
+        border-top: 0;
+    }
+
+    ::ng-deep .mat-form-field-flex {
+      align-items: center;
+    }
+}
+ .disable-grid {
+    color: grey;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+::ng-deep first.mat-menu-item{
+  border-bottom: 1px solid grey;
+}
+
+::ng-deep .mat-menu-panel .mat-menu-content {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  padding: 8px;
+  font-family: 'Roboto';
+}
+
+
+
+.white-icon svg {
+    fill: rgb(119, 117, 117);
+    height: 10px;
+    width: 10px;
+}
+
+.font-size-7 {
+    font-size: 8px;
+}
+
+.load-more {
+  height: 50px;
+  width: 646px;
+  border: 1px solid #E5E7EB;
+}
+
+.cards {
+  height: 688px;
+}
+
+
+
+
+
+.font-size-14 {
+    font-size: 14px;
+}
+  
+  mat-drawer-content {
+    padding: 12px; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mat-drawer {
+    width: 400px !important;
+  }
+
+  ::ng-deep .mat-progress-bar-fill::after {
+    background-color: #25C78B !important;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-layout {
+  white-space: normal;
+  display: flex;
+  flex-direction: row-reverse;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  
+  justify-content: space-between;
+}
+
+::ng-deep .mat-checkbox:last-child {
+
+  border-bottom: none;
+
+}
+
+::ng-deep .mat-checkbox-inner-container {
+  display: inline-block;
+  height: 12px !important;
+  width: 12px !important;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}
+
+::ng-deep .mat-progress-bar {
+    border-radius: 2px;
+}
+
+::ng-deep .mat-menu-panel {
+  width: 144px !important;
+}
+
+.container .percent .number, .container .card, body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", "Roboto", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(45deg, #333333, #5a5454);
+}
+
+.container {
+  position: relative;
+  width: 960px;
+  display: flex;
+  justify-content: space-around;
+}
+.container .card {
+  position: relative;
+  width: 250px;
+  height: 330px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  text-align: center;
+  overflow: hidden;
+  transition: 0.5s ease;
+}
+
+
+.container .card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+}
+.container .percent {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 50px #000;
+  background-color: #222;
+  z-index: 1;
+}
+
+.container .percent .number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+ svg {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  transform: rotate(-85deg);
+}
+svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #191919;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+}
+
+.profile {
+  stroke-width: 10;
+  stroke-linecap: round;
+  transform: translate(5px, 5px);
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+  stroke-dashoffset: calc(440px - (440px * 90) / 100);
+  stroke: #63e2ff;
+}
+
+.width-ico {
+height: 9.82px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  
+  height: 13.3px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 9.4px;
+  width: 9.4px;
+  left: 2px;
+  bottom: 1px;
+  background-color: #253D96;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  // background-color: #2196F3;
+}
+
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(9px);
+  -ms-transform: translateX(9px);
+  transform: translateX(9px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+  border: 1px solid #9CA3AF;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+

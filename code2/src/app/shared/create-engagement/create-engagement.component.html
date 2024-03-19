@@ -1,0 +1,152 @@
+<div class="lg:col-span-2 flex flex-col h-fit w-full flex-auto">
+    <div  class=" px-8 py-6">
+        <div class="flex justify-between w-full items-center mb-8">
+            <h3 class="text-primary text-xl roboto-medium">Create Engagement</h3>
+            <div class="icon">
+                <img class="mr-0" src="assets/icons/threedot.png" />
+            </div>
+        </div>
+        <form [formGroup]="engagementForm">
+            <div class="grid grid-cols-2 gap-3">
+                
+                <div class="col-span-2 w-full gap-2 sm:col-span-2 ">
+                    <mat-form-field class="w-full">
+                        <mat-label class="mb-3 font-roboto-600">Engagement type</mat-label>
+                        <mat-select formControlName="engagementType"  panelClass="enagegement-type-panel">
+
+                            <mat-option *ngFor="let engagementType of EngagementType" [value]="engagementType">
+                                {{engagementType}}</mat-option>
+
+                        </mat-select>
+                        <!-- <mat-icon matSuffix>keyboard_arrow_down</mat-icon> -->
+                        <mat-error *ngIf="engagementForm.controls.engagementType.invalid">Engagement Type is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-span-2 w-full gap-2 sm:col-span-2" *ngIf="selectedEngagementType != 'One-On-One'">
+                    <mat-form-field class="w-full" required>
+                        <mat-label class="mb-3 font-roboto-600">Engagement Name</mat-label>
+                        <input matInput formControlName="name" placeholder="Engagement  Name" />
+                        <mat-error *ngIf="engagementForm.controls.name.invalid">Name is required</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- Add coaches  DropDown Section -->
+                <div class="  col-span-2 gap-2 sm:col-span-2 ">
+                    <mat-form-field class="w-full coache">
+                        <mat-label class=" mb-3 font-roboto-600">Add Coaches</mat-label>
+                        <mat-select placeholder="Add Coachees" [value]="currentCoach?.id"
+                            (selectionChange)="OnCoachChange($event.value)" panelClass="coach-single-panel"
+                            formControlName="coaches">
+
+                            <mat-select-trigger>
+                                <div class="flex flex-row items-center">
+                                    <img class="coach-avatar" *ngIf="currentCoach?.profilePic"
+                                        [alt]="currentCoach?.name.charAt(0)"
+                                        [src]="profilePicPath + currentCoach?.profilePic" />
+                                    <div *ngIf="!currentCoach?.profilePic"
+                                        class="flex items-center justify-start coach-avatar rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                        {{currentCoach?.name.charAt(0)}}
+                                    </div>
+                                    <div class="ml-4 roboto-medium text-primary">{{currentCoach?.name}}</div>
+
+                                </div>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let coach of coaches$" [value]="coach.id">
+                                <ng-container [ngTemplateOutlet]="tmp" [ngTemplateOutletContext]="{option: coach}">
+                                </ng-container>
+                            </mat-option>
+                        </mat-select>
+                        <!-- <mat-icon matSuffix>add</mat-icon> -->
+                        <mat-error *ngIf="engagementForm.controls.coaches.invalid">Coache is required</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- Add coachees  dropdown Section -->
+                <div class="col-span-2 gap-2 sm:col-span-2 ">
+                    <mat-form-field class="w-full">
+                        <mat-label class=" mb-3 font-roboto-600">Add Coachees</mat-label>
+
+                        <mat-select placeholder="Add Coachees" *ngIf="selectedEngagementType == 'One-On-One'"
+                            [value]="currentCoachee?.userId" (selectionChange)="OnCoacheeChange($event.value)"
+                            panelClass="coach-single-panel" formControlName="coachees">
+
+                            <mat-select-trigger>
+                                <div class="flex flex-row items-center">
+                                    <img class="coach-avatar" *ngIf="currentCoachee?.profilePic"
+                                        [alt]="currentCoachee?.name.charAt(0)"
+                                        [src]="profilePicPath + currentCoachee?.profilePic" />
+                                    <div *ngIf="!currentCoachee?.profilePic"
+                                        class="flex items-center justify-start coach-avatar rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                        {{currentCoachee?.name.charAt(0)}}
+                                    </div>
+                                    <div class="ml-4 roboto-medium text-primary">{{currentCoachee?.name}}</div>
+
+                                </div>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let coachee of coachees$" [value]="coachee.userId">
+                                <ng-container [ngTemplateOutlet]="tmp" [ngTemplateOutletContext]="{option: coachee}">
+                                </ng-container>
+                            </mat-option>
+                        </mat-select>
+
+                        <mat-select placeholder="Add Coachees" *ngIf="selectedEngagementType == 'Group'"
+                            panelClass="coach-panel" multiple formControlName="multipleCoachees">
+                            <mat-select-trigger>
+                                <div *ngIf="multipleCoachees?.value?.length>0 " class=" coacheeLink
+                                    flex flex-0 items-center -space-x-1.5">
+                                    <ng-container class="margin-left-10 border-white"
+                                        *ngFor="let id of multipleCoachees?.value; let i = index">
+                                        <img *ngIf="getAvatarUrl(id,'coachee')?.length>1 && i <4"
+                                            class="flex-0 w-10 h-10 rounded-full border-white  ring-offset-1 ring-white-800 ring-offset-white-800 object-cover"
+                                            [src]="getAvatarUrl(id,'coachee')">
+                                        <div *ngIf="getAvatarUrl(id,'coachee')?.length===1 && i <4"
+                                            class="flex items-center border-white justify-center w-10 h-10 rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                                            {{getAvatarUrl(id,'coachee')}}
+                                        </div>
+                                    </ng-container>
+                                    <div *ngIf="multipleCoachees.value?.length > 4"
+                                        class="flex-0 flex justify-center border-white items-center text-white-200 w-10 h-10 rounded-full border-white ring-offset-1 ring-white-800 ring-offset-white-800 object-cover uppercase bg-primary text-white-600 ">
+                                        + {{ (multipleCoachees?.value?.length - 4)}}
+                                    </div>
+                                </div>
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let coachee of coachees$" [value]="coachee.userId">
+                                <ng-container [ngTemplateOutlet]="tmp" [ngTemplateOutletContext]="{option: coachee}">
+                                </ng-container>
+                            </mat-option>
+
+                        </mat-select>
+                        <mat-error *ngIf="engagementForm.controls.coachees.invalid">Coachee is required</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!-- template for mat-option -->
+                <ng-template #tmp let-coachee="option">
+                    <div class="card-conatiner flex flex-row justify-start items-center">
+                        <img class="coach-avatar" *ngIf="coachee.profilePic" [alt]="coachee.name.charAt(0)"
+                            [src]="profilePicPath + coachee.profilePic" />
+                        <div *ngIf="!coachee.profilePic"
+                            class="flex items-center justify-start coach-avatar rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
+                            {{coachee.name.charAt(0)}}
+                        </div>
+                        <div class="coach-deatis-list ml-4">
+                            {{ coachee.name
+                            }}{{ coachee.lastName }}
+                            <div class="coach-title">
+                                {{ coachee.jobTitle }}
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <!-- Footer Section -->
+                <div class="col-span-2 w-full items-center flex justify-center">
+                    <button class="primary btn" (click)="save()">Create</button>
+                    <button class="secondary btn" (click)="cancelForm()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

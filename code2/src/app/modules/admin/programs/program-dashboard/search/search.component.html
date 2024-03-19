@@ -1,0 +1,51 @@
+<div class="flex items-center justify-between w-full">
+    <div class="bg-white  pt-3 px-4 pb-2 shadow rounded-md flex items-center justify-between w-full tracking-wide">
+        <div class="w-60">
+            <mat-form-field class="searc-input" appearance="none">
+                <input id="text" [(ngModel)]="enteredSearchValue" (input)="onSearchTextChanged()" matInput
+                    placeholder="Search by program name" />
+                <mat-icon matSuffix svgIcon="mat_solid:search" (click)="onSearchTextChanged()"></mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="">
+            <div class="flex items-center ml-4 ">
+                <div class="separator border-x">
+                <button mat-button [matMenuTriggerFor]="menu">
+                    <div class="flex items-center px-4 ">
+                        <mat-icon svgIcon="mat_solid:signal_cellular_alt"></mat-icon>
+                        <div class="text-sm roboto-regular text-secondary pl-2">
+                            Sort By
+                        </div> 
+                    </div>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item [(ngModel)]="sortStartValue" (click)="sortStartDate()">Start Date</button>
+                    <button mat-menu-item [(ngModel)]="sortEndValue" (click)="sortEndDate()">End Date</button>
+                </mat-menu>
+            </div>
+            <div class="separator border-r flex items-center h-10">
+                <div class="flex items-center w-56 px-4 ">
+                    <div class="!flex !items-center">
+                        <mat-slide-toggle 
+                         [(ngModel)]="toggleValue"
+                         [ngClass]="{'difSized': !toggleValue , 'dash': toggleValue}"
+                          (click)="sliderToggle()"></mat-slide-toggle>
+                    </div>
+                    <div class="text-sm w-30 roboto-regular text-secondary pl-3">
+                        Completed 
+                    </div>
+                </div>
+            </div>
+    
+                <button class="flex items-center  pl-4 "  routerLink="/programs/create-program" >
+                    <div class="!flex !items-center">
+                        <img class="mr-2 delete cursor-pointer" src="assets/icons/Activity.png" />
+                    </div>
+                    <a class="text-sm roboto-regular w-28  text-left text-secondary pl-2" >
+                        Create Program
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

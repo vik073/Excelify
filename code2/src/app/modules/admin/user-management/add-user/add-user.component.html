@@ -1,0 +1,180 @@
+<div class="flex flex-col flex-auto min-w-0 font-roboto ">
+
+    <div class="flex-auto px-10  sm:p-10">
+        <app-header [pageTitle]="pageTitle" [pageDescription]="pageDescription"></app-header>
+        <div id="program-container" class="container">
+
+            <app-breadcrum></app-breadcrum>
+
+            <div class=" flex flex-auto  -mt-px pt-4 sm:pt-6">
+                <div class="w-full max-w-screen-xl mx-auto">
+                    <div class="grid grid-cols-3 mx-auto w-full min-w-0">
+                        <!-- create program -->
+                        <div
+                            class=" h-fit col-span-3 sm:col-span-3 md:col-span-3 mr-6 lg:col-span-2 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                            <div
+                                class="text-xl  flex flex-row items-center justify-between roboto-bold text-primary mb-8 leading-6 truncate">
+                                Add User
+                                <span>
+                                    <div class=" text-base flex items-center text-primary mb-2 roboto-medium">
+                                        <input type="checkbox" [(ngModel)]="isChecked"> <span class="ml-2 mr-3">
+                                            Upload Multiple</span>
+                                    </div>
+                                </span>
+
+                            </div>
+                            <form [formGroup]="userForm">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div *ngIf="!isChecked"
+                                        class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                        <mat-form-field class="w-full" required>
+                                            <mat-label class="mb-3 roboto-medium text-base">First Name</mat-label>
+                                            <input matInput formControlName="firstName" placeholder="First Name" />
+                                            <mat-error *ngIf="userForm.controls.firstName.invalid">Name is
+                                                required</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div *ngIf="!isChecked"
+                                        class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                        <mat-form-field class="w-full" required>
+                                            <mat-label class="mb-3 roboto-medium text-base">Last Name</mat-label>
+                                            <input matInput formControlName="lastName" placeholder="Last Name" />
+                                            <mat-error *ngIf="userForm.controls.lastName.invalid">Name is
+                                                required</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div *ngIf="!isChecked"
+                                        class="col-span-2  sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2">
+                                        <mat-form-field class="w-full" required>
+                                            <mat-label class="mb-3 roboto-medium text-base">Email</mat-label>
+                                            <input matInput formControlName="email" required placeholder="Email" />
+                                            <mat-error *ngIf="userForm.controls.email.invalid">Email is
+                                                required</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div *ngIf="isChecked"
+                                        class="col-span-2  sm:col-span-2 md:col-span-2 lg:col-span-2 xl:col-span-2">
+                                        <mat-form-field class="w-full" required>
+                                            <mat-label class="mb-3 roboto-medium text-base">Email</mat-label>
+                                            <textarea matInput formControlName="email" required
+                                                placeholder="(Use a comma or press enter to separate the users)"></textarea>
+                                            <mat-error *ngIf="userForm.controls.email.invalid">Email is
+                                                required</mat-error>
+                                        </mat-form-field>
+                                        <div class="text-sm mb-4 sub-text font-grey roboto-regular">
+                                            Use a comma or press enter to separate the users
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                        <mat-form-field class="w-full" required>
+                                            <mat-label class="mb-3 roboto-medium text-base">New Password</mat-label>
+                                            <input matInput formControlName="password" type="password"
+                                                placeholder="Password" />
+                                            <mat-error *ngIf="userForm.controls.password.invalid">Password is
+                                                required</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div
+                                        class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                        <mat-form-field class="w-full" required>
+                                            <mat-label class="mb-3 roboto-medium text-base">Confirm Password</mat-label>
+                                            <input matInput formControlName="confirmPassword" type="password"
+                                                placeholder="Confirm Password" />
+                                            <mat-error *ngIf="userForm.controls.confirmPassword.invalid">Confirm
+                                                Password is
+                                                required</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div
+                                        class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                        <mat-form-field class="w-full">
+                                            <mat-label class="mb-3 roboto-medium text-base">Program</mat-label>
+                                            <mat-select formControlName="programId">
+
+                                                <mat-option *ngFor="let program of programList"
+                                                    [value]="program.programId">
+                                                    {{program.title}}</mat-option>
+
+                                            </mat-select>
+                                            <!-- <mat-icon matSuffix>keyboard_arrow_down</mat-icon> -->
+                                        </mat-form-field>
+                                    </div>
+
+                                    <!-- Footer Section -->
+
+                                </div>
+                                <div class=" text-base text-primary  roboto-regular ">
+                                    <input type="checkbox"> <span class="ml-2 mr-3">
+                                        Require New Password as next sign in</span>
+                                </div>
+
+                                <div class="checkbox">
+                                    <div class=" text-base text-primary mb-2 roboto-medium mt-2"> Select user role</div>
+                                    <div class="text-base text-primary roboto-regular flex items-center mb-6">
+                                        <input id="Coach" value="Coach" type="checkbox" formControlName="role"> <span
+                                            class="ml-2 mr-3">Coach</span>
+                                        <input id="Coachee" value="Coachee" type="checkbox" formControlName="role"> <span
+                                            class="ml-2 mr-3">Coachee</span>
+                                        <input id="Manager" value="Manager" type="checkbox" formControlName="role"> <span
+                                            class="ml-2 mr-3">Program Manager</span>
+                                        <mat-error *ngIf="userForm.controls.role.invalid && isFormSumitted">Role is required</mat-error>
+                                    </div>
+                                    <div class=" text-base text-primary mt-6 mb-2 roboto-regular">
+                                        <input type="checkbox"> <span class="ml-2 mr-3">
+                                            Send welcome email</span>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <div class="col-span-2 w-full items-end flex justify-end">
+                                <button class="primary w-24 h-9 rounded-3xl add-btn" (click)="OnSubmit()">Save</button>
+                                <button
+                                    class="bg-gray-200 w-24 h-9 rounded-3xl text-primary w-24 h-9 rounded-3xl add-btn">Cancel</button>
+                            </div>
+
+                        </div>
+                        <!-- coaches -->
+                        <div
+                            class=" hidden sm:hidden  md:hidden lg:grid  lg:col-span-1 flex flex-col content-center items-start h-fit gap-y-6">
+                            <div
+                                class="lg:col-span-2 flex flex-col h-fit w-full flex-auto p-6 bg-card shadow rounded-2xl ">
+                                <div class="flex flex-col items-start justify-between">
+                                    <div class="flex flex-col  w-full ">
+                                        <div class="flex justify-between  py-6 items-center w-full">
+                                            <div class="font-bold text-lg font-700">Upload Users</div>
+                                            <div class="icon">
+                                                <mat-icon>warning</mat-icon>
+                                                <!-- <img class="mr-0" src="assets/icons/threedot.png" /> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-span-2 gap-2 sm:col-span-2 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                    <mat-form-field class="w-full">
+                                        <ngx-mat-file-input class="w-full" placeholder=" upload multiple users"
+                                            [formControl]="fileControl" [multiple]="multiple" [accept]="accept"
+                                            [color]="color">
+                                            <mat-icon ngxMatFileInputIcon>file_upload</mat-icon>
+                                        </ngx-mat-file-input>
+                                    </mat-form-field>
+
+                                </div>
+                                <div class="col-span-2 w-full items-center flex justify-center">
+                                    <button class="primary w-24 h-9 rounded-3xl add-btn"
+                                        (click)="onFileSave()">Save</button>
+                                    <button
+                                        class="bg-gray-200 w-24 h-9 rounded-3xl text-primary add-btn">Cancel</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

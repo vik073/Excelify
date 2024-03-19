@@ -1,0 +1,19 @@
+<div class="flex flex-col w-full">
+    <div class="flex flex-row justify-between mx-8 mt-4">
+        <div class="roboto-medium text-2xl">Coaches</div>
+        <div class="flex flex-row ">
+            <div class="flex flex-row ">
+                <mat-form-field>
+                    <mat-select [(value)]="selected" panelClass="engagement-filter">
+                        <mat-option value="oneonoonesession">All Coaches</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="text-sm font-grey flex items-center ml-4 roboto-medium">
+                + Add New
+            </div>
+        </div>
+    </div>
+    <app-table class="w-full h-full" [headerColumns]=" tableColumns" [tableForm]="VOForm"
+        [displayedColumns]="displayedColumns" [tableData]="tableData" (rowClick)="selectCoachRow($event)"></app-table>
+</div>

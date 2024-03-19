@@ -1,0 +1,85 @@
+<div class="flex flex-col flex-auto min-w-0 font-roboto ">
+
+    <div class="flex-auto px-10 mt-10 sm:p-10">
+<app-header [pageTitle]="pageTitle" [pageDescription]="pageDescription"></app-header>
+<div id="program-container" class="container">
+
+    <div class="breadcrumb font-700 flex flex-row justify-start content-center items-center">
+        <div class="flex flex-row justify-start content-center items-center"
+            *ngFor="let path of pathArr; let i = index; last as isLast">
+            <span class="path">{{ path }}</span>
+            <img class="icon" *ngIf="!isLast && !(i === 0)" src="assets/icons/ic_chevron.png " />
+        </div>
+    </div>
+
+    <div class=" flex flex-auto border-t -mt-px pt-4 sm:pt-6">
+        <div class="w-full max-w-screen-xl mx-auto">
+            <div class="grid grid-cols-3 mx-auto w-full min-w-0">
+                <!-- create program -->
+                <div
+                
+                    class=" h-fit col-span-3 sm:col-span-3 md:col-span-3 mr-6 lg:col-span-2 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                    <div class="text-lg font-rubik-600 mb-8 leading-6 truncate">Create Program
+
+                    </div>
+                    <div class="flex flex-col flex-auto h-fit">
+                        <app-create-program 
+                        [coachesList] =" coaches" 
+                        [compentencies] =" compentencies" 
+                        [programMangers]="programMangers"
+                        [coacheesList] =" coachees"
+                        [selectedCompentencies]="selectedCompentencies"
+                        [selectedCoaches]="selectedCoaches"
+                        [selectedCoachees]="selectedCoachees"
+                        ></app-create-program>
+                    </div>
+                </div>
+                <!-- coaches -->
+                <div class=" hidden sm:hidden  md:hidden lg:grid  lg:col-span-1 flex flex-col content-center items-start h-fit gap-y-6">
+                    <div
+                        class="lg:col-span-2 flex flex-col h-fit w-full flex-auto p-6 bg-card shadow rounded-2xl ">
+                        <div class="flex items-start justify-between">
+                            <app-coaches-list class="w-full" 
+                            [type]="'competencies'"
+                            [selectedList]="selectedCompentencies" 
+                            [viewMore]="competenciesExpand"
+                            (addSelection)='addSelection($event)'
+                            (searchFilter)="filterData($event)" 
+                            [filterListData]='filterCompentenciesListData'
+                            (viewMoreClick)="viewMoreClick($event)"></app-coaches-list>
+                        </div>
+                    </div>
+                    <div
+                        class=" lg:col-span-2 flex flex-col h-fit w-full flex-auto px-6 p-6 bg-card shadow rounded-2xl ">
+                        <div class="flex items-start justify-between">
+                            <app-coaches-list class="w-full"
+                            (addSelection)='addSelection($event)'
+                            [filterListData]='filterCoachListData'
+                            [selectedList]="selectedCoaches"
+                            [viewMore]="coachesExpand"
+                            (viewMoreClick)="viewMoreClick($event)"
+                            (searchFilter)="filterData($event)" 
+                            [type]="'coaches'"></app-coaches-list>
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-2 flex flex-col h-fit w-full flex-auto p-6 bg-card shadow rounded-2xl ">
+                        <div class="flex items-start justify-between">
+                            <app-coaches-list class="w-full" 
+                            (addSelection)='addSelection($event)'
+                                [filterListData]='filterCoacheeListData'
+                                [selectedList]="selectedCoachees"
+                                [type]="'coachees'"
+                                [viewMore]="coacheesExpand"
+                                (viewMoreClick)="viewMoreClick($event)"
+                                (searchFilter)="filterData($event)"></app-coaches-list>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

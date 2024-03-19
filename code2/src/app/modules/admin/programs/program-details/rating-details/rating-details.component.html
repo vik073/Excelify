@@ -1,0 +1,9 @@
+<div class="flex star w-full items-center justify-between ">
+
+    <div class="flex items-center" *ngFor="let n of numSequence(5); let i = index">
+        <mat-icon class=" text-base  min-w-0 w-4 min-h-0 h-4"
+            [ngClass]="{'text-secondary': ( rating > i  ), 'ml-4': !(i==0 ),'text-white': (rating == i ), 'text-gray-200': ( rating < i || rating == i ) }"> grade</mat-icon>
+    </div>
+    <div class="px-1 text-base roboto-regular text-gray-600 ml-6">{{rating}} <span class="ml-1">Rating</span></div>
+
+</div>

@@ -1,0 +1,80 @@
+:host {
+
+    ::ng-deep .mat-form-field-infix  {
+        font-family: 'Roboto-Regular', sans-serif !important;
+    }
+
+
+
+.mat-header-cell {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: 'Roboto-Medium', sans-serif !important;
+    color: #192965;
+}
+
+::ng-deep .font-grey {
+    color: #79869F !important;
+}
+
+.mat-cell {
+    font-size: 14px;
+    font-style: normal;
+    color: #192965;
+    font-weight: 400;
+    font-family: 'Roboto-Regular', sans-serif !important;
+}
+
+::ng-deep .mat-paginator .mat-paginator-container  {
+    display: flex;
+    justify-content: space-between;
+}
+}
+
+.delete {
+    height: 12px;
+    width: 11px;
+    cursor: pointer;
+}
+
+.message {
+    height: 9.83px;
+    width: 12px;
+    cursor: pointer;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;   
+}
+
+th,td {
+    word-wrap: break-word;
+}
+
+
+.edit {
+    height: 11px;
+    width: 11px;
+    cursor: pointer;
+}
+
+ mat-icon {
+    min-width: 16px !important;
+    width: 16px !important;
+    min-height: 12px !important;
+    height: 12px !important;
+}
+
+
+.chat {
+    height: 11px;
+    width: 11px;
+    cursor: pointer;
+}
+
+.disable {
+    pointer-events: none;
+    color: #d5d3d3 !important;
+}

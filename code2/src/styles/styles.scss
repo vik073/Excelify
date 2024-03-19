@@ -1,0 +1,210 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+
+@import url("./variable.scss");
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+body {
+    font-family: 'Roboto-Regular', sans-serif;
+    font-size: 16px;
+} 
+
+.font-roboto {
+    font-style: normal;
+    font-weight: 400;
+    font-family: 'Roboto-Regular', sans-serif !important;
+}
+
+@font-face {
+    font-family: Roboto-Regular;
+    src: url(./../assets/fonts/Roboto/Roboto-Regular.ttf) format("opentype");
+  }
+
+
+  @font-face {
+    font-family: Roboto-Medium;
+    src: url(./../assets/fonts/Roboto/Roboto-Medium.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: Roboto-Light;
+    src: url(./../assets/fonts/Roboto/Roboto-Light.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: Roboto-Bold;
+    src: url(./../assets/fonts/Roboto/Roboto-Bold.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: Roboto-Thin;
+    src: url(./../assets/fonts/Roboto/Roboto-Thin.ttf) format("opentype");
+  }
+  
+.font-size-8 {
+    font-size: 8px;
+}
+
+.grey {
+    color: #79869F;
+}
+
+.font-size-10 {
+    font-size: 10px;
+}
+
+.coach-avatar {
+    width: 21.5px;
+    min-width: 21.5px;
+    height: 21.5px;
+    line-height: 40px;
+    margin: 0 8px px 0 0;
+    border-radius: 50%;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+
+}
+
+.elip-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.elip-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.roboto-regular {
+    font-style: normal;
+    font-weight: 400;
+    font-family: 'Roboto-Regular', sans-serif !important;
+}
+
+.roboto-medium {
+    font-style: normal;
+    font-weight: 500;
+    font-family: 'Roboto-Medium', sans-serif !important;
+}
+
+.font-grey {
+    color : #79869F
+}
+
+.roboto-bold {
+    font-style: normal;
+    font-weight: 700;
+    font-family: 'Roboto-Bold', sans-serif;
+}
+
+.font-light {
+    color: #79869F;
+}
+
+.Roboto {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-family: 'Roboto-Regular', sans-serif !important;
+}
+
+/* 400 is industry standard for normal */
+
+.RobotoLight {
+    font-weight: 300;
+    font-family: 'Roboto-Light', sans-serif !important;
+}
+
+/* 300 is industry standard for normal */
+
+.RobotoMedium {
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+
+.font-rubik-400 {
+    font-style: normal;
+    font-weight: 400;
+    font-family: 'Rubik';
+}
+
+.font-rubik-500 {
+    font-style: normal;
+    font-weight: 500;
+    font-family: 'Rubik';
+}
+
+.font-rubik-600 {
+    font-style: normal;
+    font-weight: 600;
+    font-family: 'Rubik';
+}
+
+
+.font-700 {
+    font-style: normal;
+    font-weight: 700;
+    font-family: 'Roboto-Bold', sans-serif;
+}
+
+.font-roboto-700 {
+    font-style: normal;
+    font-weight: 700;
+    font-family: 'Roboto-Bold', sans-serif;
+}
+
+.mr-50 {
+    margin-right: 50px;
+}
+.add-btn {
+    width: 112px;
+    height: 35px;
+    font-style: normal;
+    font-weight: 400;
+    font-family: 'Roboto';
+    border: none;
+    margin-right: 17px;
+    color: #F5F5F7;
+    background: rgba(25, 41, 101, 0.9);
+    border-radius: 15.5px;
+}
+
+.btn {
+    width: 112px;
+    height: 35px;
+    font-style: normal;
+    font-weight: 400;
+    font-family: 'Roboto';
+    border: none;
+    margin-right: 17px;
+    color: #F5F5F7;
+    background: rgba(25, 41, 101, 0.9);
+    border-radius: 15.5px;
+  }
+
+
+.footer {
+    font-style: normal;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 400;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height, or 150% */
+
+
+    color: #858997;
+    margin-top: 16px;
+
+    
+}

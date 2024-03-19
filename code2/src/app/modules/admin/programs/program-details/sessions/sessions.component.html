@@ -1,0 +1,25 @@
+<div class="flex flex-col w-full" *ngIf="!isLoading">
+    <div class="flex flex-row justify-between mx-8 mt-4">
+        <div class="roboto-medium text-2xl">Sessions</div>
+        <div class="flex flex-row ">
+            <div class="text-sm text-gray-200 ml-4 font-rubik-500">
+
+                <div class="flex flex-row ">
+                    <mat-form-field>
+                        <mat-select [(value)]="selected" panelClass="engagement-filter" (selectionChange)="onChangeFilter($event.value)">
+                            <mat-option value="all">All Sessions</mat-option>
+                            <mat-option value="oneonoonesession">One on One</mat-option>
+                            <mat-option value="groupsession">Group</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="text-sm flex items-center font-grey ml-4 roboto-medium">
+                + Session
+            </div>
+        </div>
+    </div>
+    <app-table class="w-full h-full" [headerColumns]="tableColumns" [tableForm]="VOForm"
+        [displayedColumns]="displayedColumns" [tableData]="tableData" (saveClick)="updateSession($event)" (rowClick)="selectSessionRow($event)"></app-table>
+</div>
