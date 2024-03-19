@@ -1,0 +1,47 @@
+/* pane browser */
+.user-workspace-editor > .pane > .browser {
+  display: flex;
+  flex-direction: column;
+  width: 13rem;
+  border-right: 1px solid #000000;
+  background-color: #1A1D1F;
+  overflow: hidden;
+}
+.user-workspace-editor > .pane > .browser > .section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-x: hidden;
+  border-bottom: 1px solid #111111;
+}
+.user-workspace-editor > .pane > .browser > .section > .title {
+  padding: 0.75rem;
+}
+.user-workspace-editor > .pane > .browser > .section > .list {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.user-workspace-editor > .pane > .browser > .section > .list > .item {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  color: #aaaaaa;
+}
+.user-workspace-editor > .pane > .browser > .section > .list > .item > .icon {
+  margin-right: 0.3rem;
+}
+.user-workspace-editor > .pane > .browser > .section > .list > .item.active {
+  color: #4caf50;
+}
+.user-workspace-editor > .pane > .browser > .section > .list > .item:hover {
+  background-color: #111111;
+  transition: background-color 0.25s, color 0.25s;
+}
+.user-workspace-editor > .pane > .browser > .section > .list > .item-empty {
+  padding: 0.35rem 0.75rem;
+}

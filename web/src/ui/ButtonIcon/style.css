@@ -1,0 +1,51 @@
+/* root */
+.button-icon {
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: 0 0.1rem 0.2rem #00000033 !important;
+  background-color: #666666;
+  padding: 0;
+}
+
+/* sizes */
+.button-icon.s {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 5rem;
+}
+.button-icon.s .icon {
+  font-size: 1rem;
+}
+.button-icon.m {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 1.3rem;
+}
+.button-icon.m .icon {
+  font-size: 1.3rem;
+}
+.button-icon.l {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 1.3rem;
+}
+.button-icon.l .icon {
+  font-size: 1.3rem;
+}
+
+/* states */
+.button-icon:hover {
+  box-shadow: 0 0.2rem 0.5rem #00000055 !important;
+  background-color: #999999;
+}
+.button-icon:active {
+  box-shadow: 0 0.1rem 0.2rem #00000055 !important;
+}
+.button-icon:disabled {
+  box-shadow: none !important;
+  cursor: not-allowed;
+}

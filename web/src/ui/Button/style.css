@@ -1,0 +1,130 @@
+/* root */
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 0.2rem;
+  font-weight: 700;
+  box-shadow: 0 0.1rem 0.2rem #00000033 !important;
+  transition: box-shadow 0.2s, background-color 0.2s;
+}
+
+/* variants */
+/* - default */
+.button.default:hover {
+  border: 1px solid #43a047;
+  background-color: #43a047;
+}
+.button.default,
+.button.default:active {
+  color: #f6f6f6;
+  background-color: #388e3c;
+  border: 1px solid #388e3c;
+}
+
+/* - white */
+.button.white {
+  color: #333333;
+  background-color: #dddddd;
+  border: 1px solid #dddddd;
+}
+
+/* - outlined */
+.button.outlined:hover {
+  color: #43a047;
+  border: 1px solid #43a047;
+}
+.button.outlined,
+.button.outlined:active {
+  background-color: transparent;
+  color: #388e3c;
+  border: 1px solid #388e3c;
+}
+
+.button.danger {
+  background-color: transparent;
+  color: #f44336;
+  border: 1px solid #f44336;
+  padding: 0.45rem 0.95rem;
+}
+.button.danger:disabled {
+  background-color: transparent;
+  color: #999999;
+  border-color: #999999;
+}
+.button.positive {
+  background-color: transparent;
+  color: #008000;
+  border: 1px solid #008000;
+  padding: 0.45rem 0.95rem;
+}
+.button.positive:hover {
+  color: #ffffff;
+  background-color: #008000;
+}
+.button.positive:disabled {
+  background-color: #e4e4e4;
+  color: #999999;
+  border-color: #999999;
+}
+
+/* - text */
+.button.text {
+  background-color: transparent;
+  padding: 0.45rem 0.95rem;
+  box-shadow: none !important;
+  color: #aaaaaa;
+  border: none;
+  transition: box-shadow 0.2s, color 0.2s;
+}
+.button.text:disabled {
+  background-color: transparent;
+  color: #999999 !important;
+}
+.button.text:hover {
+  box-shadow: none !important;
+  color: #388e3c;
+}
+
+/* states */
+.button:hover {
+  box-shadow: 0 0.2rem 0.5rem #00000055 !important;
+}
+.button:active {
+  box-shadow: 0 0.1rem 0.2rem #00000055 !important;
+}
+.button:disabled {
+  box-shadow: none !important;
+  background-color: #aaaaaa !important;
+  border: 1px solid transparent !important;
+  background-image: none !important;
+  color: #555555;
+  cursor: not-allowed;
+}
+
+/* sizes */
+.button.s {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.7rem;
+}
+.button.s .icon {
+  font-size: 0.8rem;
+}
+.button.m {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.8rem;
+  max-height: 2.3rem;
+}
+.button.m .icon {
+  font-size: 0.8rem;
+}
+.button.l {
+  padding: 0.7rem 1.3rem;
+  font-size: 1rem;
+}
+.button.l .icon {
+  font-size: 1.1rem;
+}

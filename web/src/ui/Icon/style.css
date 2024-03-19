@@ -1,0 +1,25 @@
+/* root */
+.icon {
+  line-height: inherit;
+  vertical-align: middle;
+}
+
+/* sizes */
+.icon.xs {
+  font-size: 0.75rem;
+}
+.icon.s {
+  font-size: 1rem;
+}
+.icon.m {
+  font-size: 1.4rem;
+}
+.icon.l {
+  font-size: 1.8rem;
+}
+.icon.xl {
+  font-size: 2.4rem;
+}
+.icon.xxl {
+  font-size: 4rem;
+}

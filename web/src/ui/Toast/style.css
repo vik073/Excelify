@@ -1,0 +1,29 @@
+/* root */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10;
+  cursor: pointer;
+  background-color: #000000;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0.2rem 0.5rem #00000033 !important;
+  max-width: 30rem;
+}
+
+.toast-border-success {
+  border: 1px solid #36773a;
+}
+.toast-border-error {
+  border: 1px solid #9f2c29;
+}
+
+/* responsive */
+/* mobile */
+@media only screen and (max-width: 767px) {
+  .toast {
+    top: 0.5rem;
+    right: 0.5rem;
+    left: 0.5rem;
+  }
+}

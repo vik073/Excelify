@@ -1,0 +1,101 @@
+/* input - text */
+.input {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.input.text input,
+.input.textarea textarea,
+.react-datepicker__input-container input {
+  outline: none;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #111111;
+  background-color: #333333;
+  border-radius: 0.2rem;
+  color: #cccccc;
+  font-size: 0.9rem;
+  width: 100%;
+}
+.input.textarea textarea {
+  resize: vertical;
+}
+.input.text input:focus,
+.input.textarea textarea:focus,
+.input.select select:focus {
+  border: 1px solid #388e3c !important;
+}
+
+/* Label */
+.input .label {
+  margin-bottom: 0.5rem;
+  color: #666666;
+  font-weight: 700;
+}
+
+/* Info */
+.input .info {
+  margin-top: 0.3rem;
+}
+
+/* width */
+.input.width-full {
+  width: 100%;
+}
+.input.width-auto {
+  width: auto;
+}
+
+/* state */
+/* - disabled */
+.input.text input:disabled {
+  color: #999999;
+  cursor: not-allowed;
+}
+
+/* input - select */
+.input.select select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-image: url('/images/icon-arrow-drop-down.svg');
+  outline: none;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #111111;
+  background-color: #333333;
+  border-radius: 0.2rem;
+  color: #cccccc;
+  width: 100%;
+}
+.input.select select:disabled {
+  color: #999999;
+  cursor: not-allowed;
+}
+
+/* input - range */
+.input.range input {
+  width: 100%;
+}
+
+/* input - datepicker */
+.react-datepicker {
+  border-radius: 0 !important;
+}
+.react-datepicker .react-datepicker__day--selected {
+  background-color: #388e3c;
+  color: #ffffff;
+}
+.react-datepicker .react-datepicker__day {
+  border-radius: 0;
+}
+.react-datepicker .react-datepicker__time-list-item {
+  padding: 7px 10px !important;
+  height: auto !important;
+}
+.react-datepicker .react-datepicker__time-list-item--selected {
+  background-color: #388e3c !important;
+}

@@ -1,0 +1,74 @@
+.dimensions {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.dimensions > .collection > {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.dimensions > .collection > .list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #121518;
+  flex-shrink: 0;
+}
+.dimensions > .collection > .list .list-heading {
+  display: flex;
+  width: 4rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 0.5rem;
+}
+.dimensions > .collection > .list .list-content {
+  display: flex;
+  padding: 0.3rem;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.dimensions > .collection > .list > .list-content > div:first-child {
+  display: flex;
+  flex: 1;
+  min-width: 1.2rem;
+  min-height: 1.2rem;
+}
+.dimensions > .collection > .list div {
+  display: flex;
+}
+.dimensions > .collection > .list .placeholder {
+  min-height: 1rem;
+}
+.dimensions > .collection > .list .list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 8rem;
+  margin-right: 0.35rem;
+  height: 1.2rem;
+  border-radius: 1rem;
+}
+.dimensions > .collection > .list .list-item .icon {
+  margin: 0 0.3rem;
+  color: #333333;
+  font-size: 0.8rem;
+}
+.dimensions > .collection > .list .list-item .icon.icon-remove {
+  cursor: pointer;
+}
+.dimensions > .collection > .list .list-item input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 0.7rem;
+  color: #000000;
+  outline: none;
+}
+
+.dimension {
+  background-color: transparent;
+  border: 1px solid #cccccc;
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0.5rem;
+}

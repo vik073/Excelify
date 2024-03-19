@@ -1,0 +1,48 @@
+/* root */
+.button-group {
+  display: flex;
+  flex-direction: row;
+  border-radius: 0.2rem;
+  box-shadow: 0 0.1rem 0.2rem #00000033;
+  color: #ffffff;
+  background-color: #ffffff;
+  border: 1px solid #388e3c;
+  max-height: 2.3rem;
+}
+.button-group button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.8rem;
+  background-color: white;
+  color: #388e3c;
+  font-weight: 700;
+  border-right: 1px solid #388e3c;
+}
+
+.button-group button:first-child {
+  border-top-left-radius: 0.2rem;
+  border-bottom-left-radius: 0.2rem;
+}
+.button-group button:last-child {
+  border-top-right-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+  border-right: none;
+}
+.button-group button .icon {
+  font-size: 0.8rem;
+}
+
+.button-group button.active,
+.button-group button:hover {
+  color: #ffffff;
+  background-color: #388e3c;
+}
+
+.button-group.disabled {
+  box-shadow: none !important;
+}

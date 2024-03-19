@@ -1,0 +1,76 @@
+/* root */
+.typography {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+}
+
+/* variants */
+.typography.primary {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+.typography.secondary {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* sizes */
+h1.typography,
+.typography.h1 {
+  font-size: 2.75rem;
+  font-weight: 700;
+}
+h2.typography,
+.typography.h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+h3.typography,
+.typography.h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+h4.typography,
+.typography.h4 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+h5.typography,
+.typography.h5 {
+  font-size: 0.83rem;
+  font-weight: 400;
+}
+h6.typography,
+.typography.h6 {
+  font-size: 0.67rem;
+  font-weight: 400;
+}
+.typography.title {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+.typography.subtitle {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+.typography.fine-print {
+  font-size: 0.7rem;
+}
+
+/* weights */
+.typography.bold {
+  font-weight: 900;
+}
+.typography.medium {
+  font-weight: 700;
+}
+.typography.normal {
+  font-weight: 400;
+}
+
+/* responsive */
+@media (max-width: 1023px) {
+  /* Large devices (desktops, 992px and down) */
+  h1.typography,
+  .typography.h1 {
+    font-size: 2rem;
+  }
+}

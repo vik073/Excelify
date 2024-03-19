@@ -1,0 +1,50 @@
+/* user workspace editor header */
+.user-workspace-editor > .header {
+  display: flex;
+  justify-content: center;
+  background-color: #1D2022;
+  border-bottom: 1px solid #000000;
+  padding: 0 0.75rem;
+  height: 3rem;
+}
+
+/* left */
+.user-workspace-editor > .header > .left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.user-workspace-editor > .header > .left .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+.user-workspace-editor > .header > .left .logo img {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 0.5rem;
+}
+
+.user-workspace-editor > .header > .left > .nav {
+  display: flex;
+  align-items: center;
+}
+
+/* right */
+.user-workspace-editor > .header > .right {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+.user-workspace-editor > .header > .right > .avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 1.3rem;
+  background-color: #388e3c;
+  margin-left: 1rem;
+}

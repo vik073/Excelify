@@ -1,0 +1,16 @@
+.loader {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem;
+}
+.loader.contained {
+  width: 5rem;
+}
+
+.loader .typography {
+  color: #999999;
+  margin-top: 0.5rem;
+}

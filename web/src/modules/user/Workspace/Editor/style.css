@@ -1,0 +1,35 @@
+.user-workspace-editor {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* pane */
+.user-workspace-editor > .pane {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 3rem);
+}
+
+/* tabs */
+.user-workspace-editor > .pane > .sheets {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: calc(100vw - 13rem);
+}
+.user-workspace-editor > .pane > .sheets > .row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  background-color: #1D2022;
+  overflow: hidden;
+}
+.user-workspace-editor > .pane > .sheets > .row > .col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}

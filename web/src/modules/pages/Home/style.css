@@ -1,0 +1,20 @@
+.pages-home {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pages-home-buttons {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.pages-home .logo {
+  width: 8rem;
+  height: 8rem;
+  margin-bottom: 1rem;
+}

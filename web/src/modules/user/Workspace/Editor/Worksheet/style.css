@@ -1,0 +1,236 @@
+/* worksheet */
+.worksheet {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #000000;
+  transition: background-color 0.1s;
+}
+
+.worksheet.active {
+  background-color: #1d2225;
+  border: 1px solid #2f3235;
+}
+
+.worksheet > .worksheet-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #171b1f;
+  border-bottom: 1px solid #121518;
+  color: #656b71;
+  transition: background-color 0.1s;
+}
+.worksheet.active > .worksheet-header {
+  background-color: #2f3235;
+  color: #c0c1c2;
+}
+.worksheet > .worksheet-header .icon {
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+.worksheet > .worksheet-header .icon:hover {
+  color: #ffffff;
+}
+.worksheet > .worksheet-header .typography {
+  padding: 0.25rem 0;
+}
+
+.worksheet > .worksheet-content {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+/* worksheet - toolbar */
+.worksheet > .worksheet-content > .toolbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 2.8rem;
+  padding: 0.7rem 0;
+  border-right: 1px solid #121518;
+}
+.worksheet > .worksheet-content > .toolbar .button-icon {
+  border-radius: 0.1rem;
+  width: auto;
+  height: auto;
+  background-color: #999999;
+  transition: background-color 0.25s, color 0.25s;
+  margin-bottom: 1rem;
+}
+.worksheet > .worksheet-content > .toolbar .button-icon .icon {
+  font-size: 1.3rem;
+  color: #1d2022;
+}
+.worksheet > .worksheet-content > .toolbar .button-icon:hover,
+.worksheet > .worksheet-content > .toolbar .button-icon.active {
+  background-color: #ffffff;
+}
+.worksheet > .worksheet-content > .toolbar .button-icon:hover .icon {
+  color: #000000;
+}
+
+/* worksheet - work-area */
+.worksheet > .worksheet-content > .work-area {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* worksheet - work-area - sheet */
+.worksheet > .worksheet-content > .work-area > .sheet {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* worksheet - work-area - sheet - matrix */
+.worksheet > .worksheet-content > .work-area > .sheet > .matrix {
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
+
+/* worksheet - work-area - sheet - matrix - data-model */
+.worksheet
+  > .worksheet-content
+  > .work-area
+  > .sheet
+  > .matrix
+  > .view-data-model
+  table
+  > tbody
+  > tr
+  > td {
+  width: 7rem;
+  height: 1.5rem;
+  vertical-align: top;
+  text-align: left;
+  padding: 0.3rem 0.3rem;
+  background: transparent;
+  font-size: 0.8rem;
+  border: 1px solid #333333;
+}
+.worksheet
+  > .worksheet-content
+  > .work-area
+  > .sheet
+  > .matrix
+  > .view-data-model
+  > table
+  > tbody
+  > tr
+  > td:focus {
+  outline: 2px solid #0000ff !important;
+}
+.worksheet
+  > .worksheet-content
+  > .work-area
+  > .sheet
+  > .matrix
+  > .view-data-model
+  .cell-grey {
+  background-color: #595959;
+}
+
+/* worksheet - work-area - sheet - matrix - data-list */
+.worksheet
+  > .worksheet-content
+  > .work-area
+  > .sheet
+  > .matrix
+  > .view-data-list
+  table
+  thead
+  tr
+  th {
+  border: 1px solid #333333;
+  padding: 0.5rem 0.75rem;
+  color: #ffffff;
+  text-align: left;
+}
+.worksheet
+  > .worksheet-content
+  > .work-area
+  > .sheet
+  > .matrix
+  > .view-data-list
+  table
+  tbody
+  tr
+  td {
+  border: 1px solid #333333;
+  padding: 0.5rem 0.75rem;
+  color: #bbbbbb;
+}
+
+.worksheet
+  > .worksheet-content
+  > .work-area
+  > .sheet
+  > .matrix
+  > .view-worksheet
+  form {
+  width: 15rem;
+  padding: 1.5rem;
+}
+.worksheet
+  > .worksheet-content
+  > .work-area
+  > .sheet
+  > .matrix
+  > .view-worksheet
+  form
+  .buttons {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+  border-top: 1px solid #111111;
+}
+
+/* worksheet - work-area - formula  */
+.worksheet > .worksheet-content > .work-area > .formula {
+  display: flex;
+  flex-direction: column;
+  height: 15rem;
+  border-top: 1px solid #000000;
+  background-color: #141618;
+  overflow: hidden;
+}
+.worksheet > .worksheet-content > .work-area > .formula > .title {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+}
+.worksheet > .worksheet-content > .work-area > .formula > .editor {
+  display: flex;
+  flex: 1;
+  margin: 0 0.75rem;
+  border: 1px solid #333333;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: none;
+  font-size: 0.9rem;
+}
+.worksheet > .worksheet-content > .work-area > .formula > .actions {
+  display: flex;
+  flex-direction: row;
+  padding: 0.75rem;
+  min-height: 3rem;
+}
+.worksheet > .worksheet-content > .work-area > .formula > .actions > .button {
+  padding: 0.2rem 0.5rem;
+}
+
+.worksheet
+  > .worksheet-content
+  > .work-area
+  > .formula
+  > .editor
+  > .react-codemirror2 {
+  width: 100%;
+}
